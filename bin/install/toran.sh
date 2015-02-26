@@ -53,9 +53,5 @@ sed -i "s/dist_sync_mode:/dist_sync_mode: $TORAN_SYNC/g" $WORK_DIRECTORY/app/tor
 sed -i "s/\"github.com\":/\"github.com\": \"$TORAN_TOKEN_GITHUB\"/g" $WORK_DIRECTORY/app/toran/composer/auth.json
 
 # Loading permissions
-rm -rf $WORK_DIRECTORY/app/cache/*
-rm -rf $WORK_DIRECTORY/app/logs/*
 chmod -R 777 $WORK_DIRECTORY/app/cache $WORK_DIRECTORY/app/logs
-mkdir $WORK_DIRECTORY/app/cache/prod
-mkdir $WORK_DIRECTORY/app/logs/prod
 chown -R www-data:www-data $WORK_DIRECTORY
