@@ -20,23 +20,27 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
     && rm -f /etc/nginx/sites-enabled/default \
     && rm -f /etc/nginx/sites-available/default
 
-# Vhosts
-COPY assets/vhosts /etc/nginx/sites-available
-
 # Install Toran Proxy
 RUN rm -rf /var/www \
-    && curl -sL https://toranproxy.com/releases/toran-proxy-v1.1.1.tgz | tar xzC /tmp \
+    && curl -sL https://toranproxy.com/releases/toran-proxy-v1.1.6.tgz | tar xzC /tmp \
     && mv /tmp/toran /var/www \
-    && chmod -R 777 /var/www/app/cache /var/www/app/logs
+    && mkdir /var/www/app/toran \
+    && chmod -R 777 /var/www/app/cache /var/www/app/logs \
+    && chown -R www-data:www-data /var/www \
+    && echo "0 * * * * root php /var/www/bin/cron" >> /etc/crontab
 
 # Load Scripts bash
-COPY assets/bin /bin/toran-proxy/
+COPY bin /bin/toran-proxy/
 RUN chmod u+x /bin/toran-proxy/*
-COPY assets/config/parameters.yml /var/www/app/config/parameters.yml
+
+# Load assets
+COPY assets/config/toran.yml /var/www/app/config/parameters.yml
+COPY assets/config/settings.yml /var/www/app/config/toran.yml
+COPY assets/vhosts /etc/nginx/sites-available
 
 WORKDIR /var/www
 
 EXPOSE 80
 EXPOSE 443
 
-CMD /bin/toran-proxy/launch.sh && php5-fpm -R && nginx -c /etc/nginx/nginx.conf
+CMD /bin/toran-proxy/launch.sh

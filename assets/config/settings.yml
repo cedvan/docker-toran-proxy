@@ -1,0 +1,8 @@
+repositories: {  }
+packagist_packages: {  }
+packagist_sync:
+dist_sync_mode:
+git_prefix:
+git_path:
+license: null
+license_personal: true
