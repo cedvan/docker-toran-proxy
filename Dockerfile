@@ -37,7 +37,7 @@ COPY assets/config/toran.yml /var/www/app/config/parameters.yml
 COPY assets/config/settings.yml /var/www/app/toran/config.yml
 COPY assets/vhosts /etc/nginx/sites-available
 
-WORKDIR /var/www
+VOLUME /data
 
 EXPOSE 80
 EXPOSE 443

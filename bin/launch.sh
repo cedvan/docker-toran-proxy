@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DATA_DIRECTORY=/data
 WORK_DIRECTORY=/var/www
 BIN_DIRECTORY=/bin/toran-proxy
 
@@ -8,6 +9,11 @@ source $BIN_DIRECTORY/config.sh
 
 # Initilisation
 if [ "$TORAN_PROXY_INIT" == "false" ]; then
+
+    if [ ! -d "$DATA_DIRECTORY/config" ]; then
+        mkdir -p $DATA_DIRECTORY/config
+    fi
+
     source $BIN_DIRECTORY/install/nginx.sh
     source $BIN_DIRECTORY/install/toran.sh
     source $BIN_DIRECTORY/install/settings.sh

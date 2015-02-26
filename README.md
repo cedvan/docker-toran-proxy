@@ -16,9 +16,11 @@ Go with your browser to **localhost:8080**
 
 ## Save data
 
+Files are saved to `/data` in container. Just mount this volume for save your configurations and mirrors
+
 ```bash
 docker run --name toran-proxy -d \
-    -v /opt/toran-proxy:/var/www \
+    -v /opt/toran-proxy:/data \
     cedvan/toran-proxy:1.1.6
 ```
 
@@ -28,7 +30,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 8443:443
     -e "TORAN_PROXY_HTTPS=true" \
-    -v /opt/toran-proxy/certs:/var/www/certs \
+    -v /opt/toran-proxy/certs:/data/certs \
     cedvan/toran-proxy:1.1.6
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
