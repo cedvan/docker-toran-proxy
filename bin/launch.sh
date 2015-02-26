@@ -1,30 +1,22 @@
 #!/bin/bash
 
-DATA_DIRECTORY=/data
 WORK_DIRECTORY=/var/www
+ASSETS_DIRECTORY=/assets
 BIN_DIRECTORY=/bin/toran-proxy
 
-# Configuration
-source $BIN_DIRECTORY/config.sh
-
 # Initilisation
-if [ "$TORAN_PROXY_INIT" == "false" ]; then
-
-    if [ ! -d "$DATA_DIRECTORY/config" ]; then
-        mkdir -p $DATA_DIRECTORY/config
-    fi
-
-    source $BIN_DIRECTORY/install/nginx.sh
-    source $BIN_DIRECTORY/install/toran.sh
-    source $BIN_DIRECTORY/install/settings.sh
-    sed -i "s/TORAN_PROXY_INIT=false/TORAN_PROXY_INIT=true/g" $BIN_DIRECTORY/config.sh
-fi
+source $BIN_DIRECTORY/init.sh
 
 # Start PHP-FPM
+echo "Starting PHP-FPM..."
 php5-fpm -R
 
-# Start Nginx
-nginx -c /etc/nginx/nginx.conf
-
 # Start Cron
-php $WORK_DIRECTORY/bin/cron -v
+if [ "$TORAN_INIT" == "false" ]; then
+    echo "Starting Cron..."
+    php $WORK_DIRECTORY/bin/cron -v
+fi
+
+# Start Nginx
+echo "Starting Nginx..."
+nginx -c /etc/nginx/nginx.conf

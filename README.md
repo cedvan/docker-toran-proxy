@@ -16,11 +16,11 @@ Go with your browser to **localhost:8080**
 
 ## Save data
 
-Files are saved to `/data` in container. Just mount this volume for save your configurations and mirrors
+Files are saved to `/var/www` in container. Just mount this volume for save your configurations and repositories
 
 ```bash
 docker run --name toran-proxy -d \
-    -v /opt/toran-proxy:/data \
+    -v /opt/toran-proxy:/var/www \
     cedvan/toran-proxy:1.1.6
 ```
 
@@ -29,8 +29,8 @@ docker run --name toran-proxy -d \
 ```bash
 docker run --name toran-proxy -d \
     -p 8443:443
-    -e "TORAN_PROXY_HTTPS=true" \
-    -v /opt/toran-proxy/certs:/data/certs \
+    -e "TORAN_HTTPS=true" \
+    -v /opt/toran-proxy/certs:/var/www/certs \
     cedvan/toran-proxy:1.1.6
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
@@ -111,13 +111,14 @@ proxy_busy_buffers_size     64k;
 
 Below is the complete list of available options that can be used to customize your toran proxy installation.
 
-- **TORAN_PROXY_HOST**: The hostname of the toran proxy server. Defaults to `localhost`
-- **TORAN_PROXY_HTTPS**: Set to `true` to enable https support, Defaults to `false`. **Do not forget to add the certificates files**
-- **TORAN_PROXY_PACKAGIST**: Enabled packagist proxy repository. Possible configuration options are `proxy` and `false`. Defaults to `proxy`
-- **TORAN_PROXY_SYNC**: Snchronization mode. Possible configuration options are `lazy`, `all` and `new`. Defaults to `lazy`
+- **TORAN_HOST**: The hostname of the toran proxy server. Defaults to `localhost`
+- **TORAN_HTTPS**: Set to `true` to enable https support, Defaults to `false`. **Do not forget to add the certificates files**
+- **TORAN_PACKAGIST**: Enabled packagist proxy repository. Possible configuration options are `proxy` and `false`. Defaults to `proxy`
+- **TORAN_SYNC**: Snchronization mode. Possible configuration options are `lazy`, `all` and `new`. Defaults to `lazy`
     - `lazy` : Every archive is built on demand when you first install a given package's version
     - `new` : Tags newer than the oldest version you have used will be pre-cached as soon as they are available
     - `all` : All releases will be pre-cached as they become available
+- **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default null.
 
 ## Toran Proxy License
 

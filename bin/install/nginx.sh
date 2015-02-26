@@ -1,13 +1,17 @@
 #!/bin/bash
 
 # Logs
-if [ ! -d "$WORK_DIRECTORY/var/logs" ]; then
-    mkdir -p $WORK_DIRECTORY/var/logs
+if [ ! -d "$WORK_DIRECTORY/logs" ]; then
+    echo "Creating Nginx logs directory..."
+    mkdir -p $WORK_DIRECTORY/logs
 fi
 
 # Vhosts
+echo "Loading Nginx vhosts..."
 rm -f /etc/nginx/sites-enabled/*
-if [ "${TORAN_PROXY_HTTPS}" == "true" ]; then
+if [ "${TORAN_HTTPS}" == "true" ]; then
+
+    echo "Loading HTTPS Certificates..."
 
     if [ ! -e "$WORK_DIRECTORY/certs/toran-proxy.key" ]; then
         echo "ERROR: "

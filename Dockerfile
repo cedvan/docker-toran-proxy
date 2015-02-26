@@ -4,7 +4,9 @@ MAINTAINER dev@cedvan.com
 # Install PHP and Nginx
 RUN apt-get update -qq \
     && apt-get install -qqy \
+        git \
         curl \
+        apt-transport-https \
         ca-certificates \
         daemontools \
         php5-fpm \
@@ -16,28 +18,24 @@ RUN apt-get update -qq \
 
 # Configure PHP and Nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
+    && sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php5/fpm/php.ini \
+    && sed -i "s/;date.timezone.*/date.timezone = Europe\/Paris/" /etc/php5/fpm/php.ini \
     && sed -i "s/;date.timezone.*/date.timezone = Europe\/Paris/" /etc/php5/cli/php.ini \
-    && rm -f /etc/nginx/sites-enabled/default \
-    && rm -f /etc/nginx/sites-available/default
+    && sed -i "s/;listen.allowed_clients = 127.0.0.1/listen.allowed_clients = 0.0.0.0/" /etc/php5/fpm/pool.d/www.conf \
+    && sed -i "s/^user\s*=.*/user = root/" /etc/php5/fpm/pool.d/www.conf \
+    && sed -i "s/^group\s*=.*/group = root/" /etc/php5/fpm/pool.d/www.conf
 
-# Install Toran Proxy
-RUN rm -rf /var/www \
-    && curl -sL https://toranproxy.com/releases/toran-proxy-v1.1.6.tgz | tar xzC /tmp \
-    && mv /tmp/toran /var/www \
-    && chmod -R 777 /var/www/app/cache /var/www/app/logs \
-    && chown -R www-data:www-data /var/www \
-    && echo "0 * * * * root php /var/www/bin/cron" >> /etc/crontab
-
-# Load Scripts bash
+# Load Scripts bash for installing Toran Proxy
 COPY bin /bin/toran-proxy/
 RUN chmod u+x /bin/toran-proxy/*
 
 # Load assets
 COPY assets/vhosts /etc/nginx/sites-available
-COPY assets/config/toran.yml /var/www/app/config/parameters.yml
-COPY assets/config/settings.yml /var/www/app/toran/config.yml
+COPY assets/config/toran.yml /assets/app/config/parameters.yml
+COPY assets/config/settings.yml /assets/app/toran/config.yml
+COPY assets/config/composer.json /assets/app/toran/composer/auth.json
 
-VOLUME /data
+VOLUME /var/volume
 
 EXPOSE 80
 EXPOSE 443
