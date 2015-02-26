@@ -34,7 +34,7 @@ RUN chmod u+x /bin/toran-proxy/*
 
 # Load assets
 COPY assets/config/toran.yml /var/www/app/config/parameters.yml
-COPY assets/config/settings.yml /var/www/app/config/toran.yml
+COPY assets/config/settings.yml /var/www/app/toran/config.yml
 COPY assets/vhosts /etc/nginx/sites-available
 
 WORKDIR /var/www

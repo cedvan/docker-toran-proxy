@@ -12,7 +12,7 @@ docker run --name toran-proxy -d \
     -p 8080:80 \
     cedvan/toran-proxy:1.1.6
 ```
-Go in your browser to **localhost:8080**
+Go with your browser to **localhost:8080**
 
 ## Save data
 
@@ -32,6 +32,76 @@ docker run --name toran-proxy -d \
     cedvan/toran-proxy:1.1.6
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
+
+## Add reverse proxy to improve access
+
+- Install **nginx** (cf http://wiki.nginx.org/Install)
+- Create **/etc/nginx/conf.d/proxy.conf**
+```
+proxy_redirect              off;
+proxy_set_header            Host            $host;
+proxy_set_header            X-Real-IP       $remote_addr;
+proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
+client_max_body_size        10m;
+client_body_buffer_size     128k;
+client_header_buffer_size   64k;
+proxy_connect_timeout       90;
+proxy_send_timeout          90;
+proxy_read_timeout          90;
+proxy_buffer_size           16k;
+proxy_buffers               32 16k;
+proxy_busy_buffers_size     64k;
+```
+- Create **/etc/nginx/sites-available/toran-proxy.conf**
+    - For HTTP
+    ```
+    server {
+            listen 80;
+            server_name toran-proxy.domain.tld;
+
+            location / {
+                    proxy_pass https://localhost:8080/;
+            }
+    }
+    ```
+    - For HTTPS
+    ```
+    server {
+            listen 80;
+            server_name toran-proxy.domain.tld;
+            rewrite ^/(.*) https://toran-proxy.domain.tld/$1 permanent;
+    }
+
+    server {
+            listen 443;
+            server_name toran-proxy.domain.tld;
+
+            ssl on;
+            ssl_certificate /opt/toran-proxy/certs/toran-proxy.crt;
+            ssl_certificate_key /opt/toran-proxy/certs/toran-proxy.key;
+
+            location / {
+                proxy_pass https://localhost:8443/;
+            }
+    }
+    ```
+- Create **symbolic link** for enabled reverse proxy `ln -s /etc/nginx/sites-available/toran-proxy.conf /etc/nginx/sites-enabled/toran-proxy.conf`
+- Restart **nginx** `sudo service nginx restart`
+
+
+## Add HTTP Authentification to improve safety
+
+- Add **auth_basic** and **auth_basic_user_file** to your reverse proxy
+- Add **.htpasswd**
+
+```
+    location / {
+        auth_basic "Toran proxy protected";
+        auth_basic_user_file  /opt/toran-proxy/.htpasswd;
+        proxy_pass http://localhost:8080/;
+    }
+```
+
 
 ## Toran Proxy Options
 
@@ -55,6 +125,7 @@ You can add a license from the Toran proxy interface
 ## References
 
 Toran is built by Jordi Boggiano, lead developer of Composer. As such he can make sure they work well together. No surprises.
-https://toranproxy.com/
-https://twitter.com/toranproxy
-https://getcomposer.org/doc/articles/handling-private-packages-with-satis.md
+
+- https://toranproxy.com/
+- https://twitter.com/toranproxy
+- https://getcomposer.org/doc/articles/handling-private-packages-with-satis.md
