@@ -1,5 +1,10 @@
 # Docker Toran Proxy
 
+Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your own server or even inside your office. This offers a few benefits:
+
+- **Redundant infrastructure to ensure your deployments never fail and your developers can work at any time.** Packages will be installed from your proxy with a fallback to GitHub, ensuring a maximum availability.
+- **Higher bandwidth for faster installations.** You can set up Toran in your local network or on a server near you.
+
 ## Quick start
 
 ```bash
@@ -46,3 +51,10 @@ Below is the complete list of available options that can be used to customize yo
 
 By default, Toran proxy license is for personal use.
 You can add a license from the Toran proxy interface
+
+## References
+
+Toran is built by Jordi Boggiano, lead developer of Composer. As such he can make sure they work well together. No surprises.
+https://toranproxy.com/
+https://twitter.com/toranproxy
+https://getcomposer.org/doc/articles/handling-private-packages-with-satis.md
