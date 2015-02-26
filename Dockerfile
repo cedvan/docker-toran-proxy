@@ -24,7 +24,6 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
 RUN rm -rf /var/www \
     && curl -sL https://toranproxy.com/releases/toran-proxy-v1.1.6.tgz | tar xzC /tmp \
     && mv /tmp/toran /var/www \
-    && mkdir /var/www/app/toran \
     && chmod -R 777 /var/www/app/cache /var/www/app/logs \
     && chown -R www-data:www-data /var/www \
     && echo "0 * * * * root php /var/www/bin/cron" >> /etc/crontab
