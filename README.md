@@ -28,7 +28,7 @@ docker run --name toran-proxy -d \
 
 ```bash
 docker run --name toran-proxy -d \
-    -p 8443:443
+    -p 8443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/var/www/certs \
     cedvan/toran-proxy:1.1.6
