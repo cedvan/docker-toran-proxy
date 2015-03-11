@@ -1,13 +1,11 @@
-FROM ubuntu:14.04
+FROM cedvan/ubuntu:14.04.20150311
 MAINTAINER dev@cedvan.com
 
 # Install PHP and Nginx
 RUN apt-get update -qq \
     && apt-get install -qqy \
         git \
-        curl \
         apt-transport-https \
-        ca-certificates \
         daemontools \
         php5-fpm \
         php5-json \
