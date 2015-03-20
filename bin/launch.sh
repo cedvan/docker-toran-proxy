@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_DIRECTORY=/data
+DATA_DIRECTORY=/data/toran-proxy
 WORK_DIRECTORY=/var/www
 ASSETS_DIRECTORY=/assets
 BIN_DIRECTORY=/bin/toran-proxy
