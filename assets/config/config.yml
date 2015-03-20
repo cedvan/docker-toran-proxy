@@ -1,0 +1,8 @@
+repositories: {  }
+packagist_packages: {  }
+packagist_sync: proxy
+dist_sync_mode: lazy
+git_prefix: /mirrors
+git_path: /data/mirrors
+license: null
+license_personal: true

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Logs
-if [ ! -d "$WORK_DIRECTORY/logs" ]; then
+if [ ! -d "$DATA_DIRECTORY/logs" ]; then
     echo "Creating Nginx logs directory..."
-    mkdir -p $WORK_DIRECTORY/logs
+    mkdir -p $DATA_DIRECTORY/logs
 fi
 
 # Vhosts
@@ -13,20 +13,20 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
 
     echo "Loading HTTPS Certificates..."
 
-    if [ ! -e "$WORK_DIRECTORY/certs/toran-proxy.key" ]; then
+    if [ ! -e "$DATA_DIRECTORY/certs/toran-proxy.key" ]; then
         echo "ERROR: "
         echo "  Please add toran-proxy.key in folder certs/"
         exit 1
     fi
 
-    if [ ! -e "$WORK_DIRECTORY/certs/toran-proxy.crt" ]; then
+    if [ ! -e "$DATA_DIRECTORY/certs/toran-proxy.crt" ]; then
         echo "ERROR: "
         echo "  Please add toran-proxy.crt in folder certs/"
         exit 1
     fi
 
     # Add certificates trusted
-    ln -s $WORK_DIRECTORY/certs /usr/local/share/ca-certificates/toran-proxy
+    ln -s $DATA_DIRECTORY/certs /usr/local/share/ca-certificates/toran-proxy
     update-ca-certificates
 
     ln -s /etc/nginx/sites-available/toran-proxy-https.conf /etc/nginx/sites-enabled/toran-proxy-https.conf
