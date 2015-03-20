@@ -35,7 +35,7 @@ RUN chmod u+x /bin/toran-proxy/*
 COPY assets/vhosts /etc/nginx/sites-available
 COPY assets/config /assets/config
 
-VOLUME /data
+VOLUME /data/toran-proxy
 
 EXPOSE 80
 EXPOSE 443

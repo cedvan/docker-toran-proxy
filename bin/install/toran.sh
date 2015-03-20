@@ -52,4 +52,8 @@ echo "0 * * * * root php /var/www/bin/cron" >> /etc/crontab
 
 # Loading permissions
 chmod -R 777 $WORK_DIRECTORY/app/cache $WORK_DIRECTORY/app/logs
-chown -R www-data:www-data $WORK_DIRECTORY
+chown -R www-data:www-data \
+    $WORK_DIRECTORY \
+    $DATA_DIRECTORY/toran \
+    $DATA_DIRECTORY/mirrors \
+    $DATA_DIRECTORY/logs
