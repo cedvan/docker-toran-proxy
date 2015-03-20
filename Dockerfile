@@ -23,17 +23,19 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
     && sed -i "s/^user\s*=.*/user = root/" /etc/php5/fpm/pool.d/www.conf \
     && sed -i "s/^group\s*=.*/group = root/" /etc/php5/fpm/pool.d/www.conf
 
+# Download Toran Proxy
+RUN curl -sL https://toranproxy.com/releases/toran-proxy-v1.1.6.tgz | tar xzC /tmp \
+    && mv /tmp/toran /var/www
+
 # Load Scripts bash for installing Toran Proxy
 COPY bin /bin/toran-proxy/
 RUN chmod u+x /bin/toran-proxy/*
 
 # Load assets
 COPY assets/vhosts /etc/nginx/sites-available
-COPY assets/config/toran.yml /assets/app/config/parameters.yml
-COPY assets/config/settings.yml /assets/app/toran/config.yml
-COPY assets/config/composer.json /assets/app/toran/composer/auth.json
+COPY assets/config /assets/config
 
-VOLUME /var/volume
+VOLUME /data
 
 EXPOSE 80
 EXPOSE 443

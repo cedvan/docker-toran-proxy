@@ -1,7 +1,0 @@
-parameters:
-    toran_scheme:
-    toran_host:
-    toran_http_port: 80
-    toran_https_port: 443
-    toran_base_url:
-    secret:

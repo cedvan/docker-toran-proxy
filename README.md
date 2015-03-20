@@ -16,11 +16,11 @@ Go with your browser to **localhost:8080**
 
 ## Save data
 
-Files are saved to `/var/www` in container. Just mount this volume for save your configurations and repositories
+Files are saved to `/data` in container. Just mount this volume for save your configurations and repositories
 
 ```bash
 docker run --name toran-proxy -d \
-    -v /opt/toran-proxy:/var/www \
+    -v /opt/toran-proxy:/data \
     cedvan/toran-proxy:1.1.6
 ```
 
@@ -30,10 +30,11 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 8443:443 \
     -e "TORAN_HTTPS=true" \
-    -v /opt/toran-proxy/certs:/var/www/certs \
+    -v /opt/toran-proxy/certs:/data/certs \
     cedvan/toran-proxy:1.1.6
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
+
 
 ### Generation of Self Signed Certificates
 
@@ -61,73 +62,51 @@ Congratulations! you have now generated an SSL certificate thats valid for 365 d
 
 ## Add reverse proxy to improve access
 
-- Install **nginx** (cf http://wiki.nginx.org/Install)
-- Create **/etc/nginx/conf.d/proxy.conf**
+Just run docker container `jwilder/nginx-proxy` (cf https://github.com/jwilder/nginx-proxy/blob/master/README.md)
+
+```bash
+docker run --name proxy -d \
+    -p 80:80 \
+    -p 443:443 \
+    -v /var/run/docker.sock:/tmp/docker.sock \
+    -v /opt/proxy/certs:/etc/nginx/certs \
+    jwilder/nginx-proxy
 ```
-proxy_redirect              off;
-proxy_set_header            Host            $host;
-proxy_set_header            X-Real-IP       $remote_addr;
-proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
-client_max_body_size        10m;
-client_body_buffer_size     128k;
-client_header_buffer_size   64k;
-proxy_connect_timeout       90;
-proxy_send_timeout          90;
-proxy_read_timeout          90;
-proxy_buffer_size           16k;
-proxy_buffers               32 16k;
-proxy_busy_buffers_size     64k;
+
+Next add environment variables **VIRTUAL_HOST** and **VIRTUAL_PROTO** to container toran-proxy
+
+##### HTTP
+
+```bash
+docker run --name toran-proxy -d \
+    -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
+    -e "VIRTUAL_PROTO=http" \
+    cedvan/toran-proxy:1.1.6
 ```
-- Create **/etc/nginx/sites-available/toran-proxy.conf**
-    - For HTTP
-    ```
-    server {
-            listen 80;
-            server_name toran-proxy.domain.tld;
+Go with your browser to **http://toran-proxy.domain.tld**
 
-            location / {
-                    proxy_pass https://localhost:8080/;
-            }
-    }
-    ```
-    - For HTTPS
-    ```
-    server {
-            listen 80;
-            server_name toran-proxy.domain.tld;
-            rewrite ^/(.*) https://toran-proxy.domain.tld/$1 permanent;
-    }
 
-    server {
-            listen 443;
-            server_name toran-proxy.domain.tld;
+##### HTTPS
 
-            ssl on;
-            ssl_certificate /opt/toran-proxy/certs/toran-proxy.crt;
-            ssl_certificate_key /opt/toran-proxy/certs/toran-proxy.key;
-
-            location / {
-                proxy_pass https://localhost:8443/;
-            }
-    }
-    ```
-- Create **symbolic link** for enabled reverse proxy `ln -s /etc/nginx/sites-available/toran-proxy.conf /etc/nginx/sites-enabled/toran-proxy.conf`
-- Restart **nginx** `sudo service nginx restart`
+```bash
+docker run --name toran-proxy -d \
+    -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
+    -e "VIRTUAL_PROTO=https" \
+    cedvan/toran-proxy:1.1.6
+```
+Go with your browser to **https://toran-proxy.domain.tld**
 
 
 ## Add HTTP Authentification to improve safety
 
-- Add **auth_basic** and **auth_basic_user_file** to your reverse proxy
-- Add **.htpasswd**
+Use file **htpasswd** to add authentification (cf https://github.com/jwilder/nginx-proxy/blob/master/README.md#basic-authentication-support) :
 
+```bash
+docker run --name proxy -d \
+    -p 80:80 \
+    -v /opt/proxy/htpasswd:/etc/nginx/htpasswd \
+    jwilder/nginx-proxy
 ```
-    location / {
-        auth_basic "Toran proxy protected";
-        auth_basic_user_file  /opt/toran-proxy/.htpasswd;
-        proxy_pass http://localhost:8080/;
-    }
-```
-
 
 ## Toran Proxy Options
 
@@ -137,11 +116,6 @@ Below is the complete list of available options that can be used to customize yo
 
 - **TORAN_HOST**: The hostname of the toran proxy server. Defaults to `localhost`
 - **TORAN_HTTPS**: Set to `true` to enable https support, Defaults to `false`. **Do not forget to add the certificates files**
-- **TORAN_PACKAGIST**: Enabled packagist proxy repository. Possible configuration options are `proxy` and `false`. Defaults to `proxy`
-- **TORAN_SYNC**: Snchronization mode. Possible configuration options are `lazy`, `all` and `new`. Defaults to `lazy`
-    - `lazy` : Every archive is built on demand when you first install a given package's version
-    - `new` : Tags newer than the oldest version you have used will be pre-cached as soon as they are available
-    - `all` : All releases will be pre-cached as they become available
 - **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default null.
 
 ## Toran Proxy License
@@ -156,3 +130,4 @@ Toran is built by Jordi Boggiano, lead developer of Composer. As such he can mak
 - https://toranproxy.com/
 - https://twitter.com/toranproxy
 - https://getcomposer.org/doc/articles/handling-private-packages-with-satis.md
+- https://github.com/jwilder/nginx-proxy
