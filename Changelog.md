@@ -1,7 +1,8 @@
 # Changelog
 
 **latest**
-- Add cron on the hour for download packages in background
+- Add **cron** on the hour for download packages in background
+- Fix toran config `git_path`
 
 **1.1.6-1**
 - Download Toran Proxy in Dockerfile
