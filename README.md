@@ -10,7 +10,7 @@ Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your
 ```bash
 docker run --name toran-proxy -d \
     -p 8080:80 \
-    cedvan/toran-proxy:1.1.6-1
+    cedvan/toran-proxy:1.1.6-2
 ```
 Go with your browser to **localhost:8080**
 
@@ -21,7 +21,7 @@ Files are saved to `/data/toran-proxy` in container. Just mount this volume for 
 ```bash
 docker run --name toran-proxy -d \
     -v /opt/toran-proxy:/data/toran-proxy \
-    cedvan/toran-proxy:1.1.6-1
+    cedvan/toran-proxy:1.1.6-2
 ```
 
 ## Enabled HTTPS
@@ -31,7 +31,7 @@ docker run --name toran-proxy -d \
     -p 8443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
-    cedvan/toran-proxy:1.1.6-1
+    cedvan/toran-proxy:1.1.6-2
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
 
@@ -81,7 +81,7 @@ Next add environment variables **VIRTUAL_HOST** and **VIRTUAL_PROTO** to contain
 docker run --name toran-proxy -d \
     -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
     -e "VIRTUAL_PROTO=http" \
-    cedvan/toran-proxy:1.1.6-1
+    cedvan/toran-proxy:1.1.6-2
 ```
 Go with your browser to **http://toran-proxy.domain.tld**
 
@@ -92,7 +92,7 @@ Go with your browser to **http://toran-proxy.domain.tld**
 docker run --name toran-proxy -d \
     -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
     -e "VIRTUAL_PROTO=https" \
-    cedvan/toran-proxy:1.1.6-1
+    cedvan/toran-proxy:1.1.6-2
 ```
 Go with your browser to **https://toran-proxy.domain.tld**
 
