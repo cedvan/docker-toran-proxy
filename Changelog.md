@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Add cron on the hour for download packages in background
+
 **1.1.6-1**
 - Download Toran Proxy in Dockerfile
 - Move save data in `/data/toran-proxy`

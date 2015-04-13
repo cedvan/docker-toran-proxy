@@ -4,6 +4,8 @@
 if [ ! -d "$DATA_DIRECTORY/logs" ]; then
     echo "Creating Nginx logs directory..."
     mkdir -p $DATA_DIRECTORY/logs
+    chmod -R 777 $DATA_DIRECTORY/logs
+    chown -R www-data:www-data $DATA_DIRECTORY/logs
 fi
 
 # Vhosts

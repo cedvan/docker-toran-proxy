@@ -15,7 +15,7 @@ php5-fpm -R
 
 # Start Cron
 if [ "$TORAN_INIT" == "false" ]; then
-    echo "Starting Cron..."
+    echo "Starting First Cron..."
     php $WORK_DIRECTORY/bin/cron -v
 fi
 
