@@ -5,6 +5,7 @@ echo "Configure Toran Proxy..."
 # Toran Proxy Configuration
 TORAN_HOST=${TORAN_HOST:-localhost}
 TORAN_HTTPS=${TORAN_HTTPS:-false}
+TORAN_CRON=${TORAN_CRON:-true}
 TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-}
 TORAN_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
@@ -48,12 +49,14 @@ fi
 ln -s $DATA_DIRECTORY/mirrors $WORK_DIRECTORY/web/mirrors
 
 # Installing Cron
-echo "0 * * * * root php /var/www/bin/cron" >> /etc/crontab
+if [ "${TORAN_CRON}" == "true" ]; then
+    echo "Installing Cron..."
+    echo "0 * * * * root php /var/www/bin/cron" | crontab -u root -
+fi
 
 # Loading permissions
-chmod -R 777 $WORK_DIRECTORY/app/cache $WORK_DIRECTORY/app/logs
+chmod -R 777 $WORK_DIRECTORY/app/cache
 chown -R www-data:www-data \
     $WORK_DIRECTORY \
     $DATA_DIRECTORY/toran \
-    $DATA_DIRECTORY/mirrors \
-    $DATA_DIRECTORY/logs
+    $DATA_DIRECTORY/mirrors
