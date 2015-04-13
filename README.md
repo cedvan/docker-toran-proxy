@@ -116,7 +116,7 @@ Below is the complete list of available options that can be used to customize yo
 
 - **TORAN_HOST**: The hostname of the toran proxy server. Defaults to `localhost`
 - **TORAN_HTTPS**: Set to `true` to enable https support, Defaults to `false`. **Do not forget to add the certificates files**
-- **TORAN_CRON**: Set to `true` to enable cron on the hour for download packages in background, Defaults to `true`.
+- **TORAN_CRON**: Set to `true` to enable cron every minute for download packages in background, Defaults to `true`.
 - **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default null.
 
 ## Toran Proxy License

@@ -48,10 +48,20 @@ if [ ! -e $DATA_DIRECTORY/mirrors ]; then
 fi
 ln -s $DATA_DIRECTORY/mirrors $WORK_DIRECTORY/web/mirrors
 
+# Create directories logs
+if [ ! -d "$DATA_DIRECTORY/logs" ]; then
+    echo "Creating logs directories..."
+    mkdir -p $DATA_DIRECTORY/logs/nginx
+    mkdir -p $DATA_DIRECTORY/logs/cron
+    chmod -R 644 $DATA_DIRECTORY/logs
+    chown -R www-data:www-data $DATA_DIRECTORY/logs
+fi
+
 # Installing Cron
-if [ "${TORAN_CRON}" == "true" ]; then
+if [ "${TORAN_CRON}" == true ]; then
     echo "Installing Cron..."
-    echo "0 * * * * root php /var/www/bin/cron" | crontab -u root -
+    echo "* * * * * root /bin/bash $BIN_DIRECTORY/cron/toran-proxy.sh" >> /etc/cron.d/toran-proxy
+    echo "" >> /etc/cron.d/toran-proxy
 fi
 
 # Loading permissions
