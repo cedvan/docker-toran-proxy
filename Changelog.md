@@ -1,6 +1,6 @@
 # Changelog
 
-**latest**
+**1.1.6-2**
 - Add **cron** every minute for download packages in background
 - Fix toran config `git_path`
 - Optimize logs directories
