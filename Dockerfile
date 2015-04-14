@@ -1,4 +1,4 @@
-FROM cedvan/ubuntu:14.04.20150311
+FROM cedvan/ubuntu:14.04.20150414
 MAINTAINER dev@cedvan.com
 
 # Install PHP and Nginx
