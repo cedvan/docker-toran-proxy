@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Update image FROM to cedvan/ubuntu:14.04.20150414
+
 **1.1.6-2**
 - Add **cron** every minute for download packages in background
 - Fix toran config `git_path`
