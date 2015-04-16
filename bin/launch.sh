@@ -8,6 +8,7 @@ BIN_DIRECTORY=/bin/toran-proxy
 # Initilisation
 source $BIN_DIRECTORY/install/toran.sh
 source $BIN_DIRECTORY/install/nginx.sh
+source $BIN_DIRECTORY/install/ssh.sh
 
 # Start PHP-FPM
 echo "Starting PHP-FPM..."

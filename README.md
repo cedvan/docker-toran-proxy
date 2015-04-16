@@ -24,6 +24,16 @@ docker run --name toran-proxy -d \
     cedvan/toran-proxy:1.1.6-2
 ```
 
+## Add ssh config for private repository
+
+```bash
+docker run --name toran-proxy -d \
+    -p 8443:443 \
+    -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
+    cedvan/toran-proxy:1.1.6-2
+```
+*Files supported : `id_rsa`, `id_rsa.pub` and `known_hosts`*
+
 ## Enabled HTTPS
 
 ```bash
@@ -34,7 +44,6 @@ docker run --name toran-proxy -d \
     cedvan/toran-proxy:1.1.6-2
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
-
 
 ### Generation of Self Signed Certificates
 
