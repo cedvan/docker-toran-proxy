@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Update Toran Proxy to version 1.1.7
+
 **1.1.6-3**
 - Update image FROM to cedvan/ubuntu:14.04.20150414
 - Add ssh config for root user
