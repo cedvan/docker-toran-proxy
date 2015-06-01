@@ -1,6 +1,6 @@
 # Changelog
 
-**latest**
+**1.1.7**
 - Update Toran Proxy to version 1.1.7
 
 **1.1.6-3**
