@@ -1,6 +1,6 @@
 # Changelog
 
-**latest**
+**1.1.6-3**
 - Update image FROM to cedvan/ubuntu:14.04.20150414
 - Add ssh config for root user
 - Fix License
