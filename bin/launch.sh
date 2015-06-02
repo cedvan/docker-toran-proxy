@@ -15,11 +15,8 @@ echo "Starting PHP-FPM..."
 php5-fpm -R
 
 # Start Cron
-if [ "${TORAN_CRON}" == true ]; then
-	echo "Starting Cron..."
-	source $BIN_DIRECTORY/cron/toran-proxy.sh
-	cron
-fi
+echo "Starting Cron Service..."
+cron
 
 # Start Nginx
 echo "Starting Nginx..."
