@@ -1,5 +1,11 @@
 # Changelog
 
+**latest**
+- Add Cron timer configuration
+- Fix creating logs directories
+- Remove launch cron on start to speed up launch
+- Optimize loading permissions
+
 **1.1.7**
 - Update Toran Proxy to version 1.1.7
 

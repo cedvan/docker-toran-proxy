@@ -45,6 +45,15 @@ docker run --name toran-proxy -d \
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
 
+## Configure Cron timer
+
+```bash
+docker run --name toran-proxy -d \
+    -p 8443:443 \
+    -e "TORAN_CRON_TIMER=half" \
+    cedvan/toran-proxy:1.1.7
+```
+
 ### Generation of Self Signed Certificates
 
 Generation of self-signed SSL certificates involves a simple 3 step procedure.
@@ -125,7 +134,14 @@ Below is the complete list of available options that can be used to customize yo
 
 - **TORAN_HOST**: The hostname of the toran proxy server. Defaults to `localhost`
 - **TORAN_HTTPS**: Set to `true` to enable https support, Defaults to `false`. **Do not forget to add the certificates files**
-- **TORAN_CRON**: Set to `true` to enable cron every minute for download packages in background, Defaults to `true`.
+- **TORAN_CRON_TIMER**: Setup cron job timer. Defaults to `minutes`
+    - `minutes`: All minutes
+    - `five`: All five minutes
+    - `fifteen`: All fifteen minutes
+    - `half`: All fifteen minutes
+    - `hour`: All hours
+    - `daily`: All days at 04:00 (Use *TORAN_CRON_TIMER_DAILY_TIME* for customize time)
+- **TORAN_CRON_TIMER_DAILY_TIME**: Set a time for cron job daily timer in `HH:MM` format. Defaults to `04:00`
 - **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default null.
 
 ## Toran Proxy License
