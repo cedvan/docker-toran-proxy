@@ -1,11 +1,12 @@
 #!/bin/bash
 
 DATA_DIRECTORY=/data/toran-proxy
+LOGS_DIRECTORY=/var/log/toran-proxy
 DATE="$(date)"
 
 # Launch cron
-echo "$DATE - Starting cron..." >> $DATA_DIRECTORY/logs/cron/cron.log
-cd /var/www && php bin/cron -v >> $DATA_DIRECTORY/logs/cron/cron.log 2>&1
+echo "$DATE - Starting cron..." >> $LOGS_DIRECTORY/cron/cron.log
+cd /var/www && php bin/cron -v >> $LOGS_DIRECTORY/cron/cron.log 2>&1
 
 # Refresh www-data permissions
-chown -R www-data:www-data $DATA_DIRECTORY/mirrors $DATA_DIRECTORY/logs $DATA_DIRECTORY/toran
+chown -R www-data:www-data $DATA_DIRECTORY/mirrors $DATA_DIRECTORY/toran
