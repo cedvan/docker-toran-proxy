@@ -2,7 +2,7 @@
 
 **latest**
 - Add Cron timer configuration
-- Fix creating logs directories
+- Optimize logs directories
 - Remove launch cron on start to speed up launch
 - Optimize loading permissions
 

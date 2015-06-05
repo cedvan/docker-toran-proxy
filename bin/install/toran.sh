@@ -25,7 +25,7 @@ if [ "${TORAN_CRON_TIMER}" != "minutes" ] && [ "${TORAN_CRON_TIMER}" != "five" ]
 fi
 
 # Checking Cron daily time
-if [ ! "${TORAN_CRON_TIMER_DAILY_TIME}" =~ ^[0-9]{2}:[0-9]{2}$ ]; then
+if [[ ! "${TORAN_CRON_TIMER_DAILY_TIME}" =~ ^[0-9]{2}:[0-9]{2}$ ]]; then
     echo "ERROR: "
     echo "  Variable TORAN_CRON_TIMER_DAILY_TIME isn't valid ! (Format accepted : HH:MM)"
     exit 1
@@ -65,16 +65,23 @@ fi
 ln -s $DATA_DIRECTORY/mirrors $WORK_DIRECTORY/web/mirrors
 
 # Create logs nginx directories
-if [ ! -d "$DATA_DIRECTORY/logs/nginx" ]; then
+if [ ! -d "/var/log/toran-proxy/nginx" ]; then
     echo "Creating logs directories for nginx..."
-    mkdir -p $DATA_DIRECTORY/logs/nginx
+    mkdir -p /var/log/toran-proxy/nginx
 fi
 
 # Create logs cron directories
-if [ ! -d "$DATA_DIRECTORY/logs/cron" ]; then
+if [ ! -d "/var/log/toran-proxy/cron" ]; then
     echo "Creating logs directories for cron..."
-    mkdir -p $DATA_DIRECTORY/logs/cron
+    mkdir -p /var/log/toran-proxy/cron
 fi
+
+# Create logs symbolic links
+if [ -e $DATA_DIRECTORY/logs ]; then
+    rm -rf $DATA_DIRECTORY/logs
+fi
+ln -s /var/log/toran-proxy $DATA_DIRECTORY/logs
+ln -s /var/log/toran-proxy /logs
 
 # Installing Cron
 echo "Installing Cron..."
@@ -100,10 +107,10 @@ echo "" >> /etc/cron.d/toran-proxy
 
 # Loading permissions
 echo "Loading permissions..."
-chmod -R 644 $DATA_DIRECTORY/logs
+chmod -R 644 /var/log/toran-proxy
 chmod -R 777 $WORK_DIRECTORY/app/cache
 chown -R www-data:www-data \
     $WORK_DIRECTORY \
     $DATA_DIRECTORY/toran \
     $DATA_DIRECTORY/mirrors \
-    $DATA_DIRECTORY/logs
+    /var/log/toran-proxy
