@@ -7,7 +7,7 @@ TORAN_HOST=${TORAN_HOST:-localhost}
 TORAN_HTTPS=${TORAN_HTTPS:-false}
 TORAN_CRON_TIMER=${TORAN_CRON_TIMER:-minutes}
 TORAN_CRON_TIMER_DAILY_TIME=${TORAN_CRON_TIMER_DAILY_TIME:-04:00}
-TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-}
+TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-false}
 TORAN_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 # Checking Toran Proxy Configuration
@@ -50,12 +50,17 @@ if [ ! -e $DATA_DIRECTORY/toran/config.yml ]; then
 fi
 
 # Load config composer
-if [ -e $DATA_DIRECTORY/toran/composer/auth.json ]; then
-    rm -rf $DATA_DIRECTORY/toran/composer/auth.json
-fi
 mkdir -p $DATA_DIRECTORY/toran/composer
-cp -f $ASSETS_DIRECTORY/config/composer.json $DATA_DIRECTORY/toran/composer/auth.json
-sed -i "s/\"github.com\":/\"github.com\":\"$TORAN_TOKEN_GITHUB\"/g" $WORK_DIRECTORY/app/toran/composer/auth.json
+if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
+    echo "Installing Token Github..."
+    if [ -e $DATA_DIRECTORY/toran/composer/auth.json ]; then
+        rm -rf $DATA_DIRECTORY/toran/composer/auth.json
+    fi
+    cp -f $ASSETS_DIRECTORY/config/composer.json $DATA_DIRECTORY/toran/composer/auth.json
+    sed -i "s/\"github.com\":/\"github.com\":\"$TORAN_TOKEN_GITHUB\"/g" $WORK_DIRECTORY/app/toran/composer/auth.json
+else
+     echo "Warning Token Github is empty ! Banishment from github possible, cron job will be disrupted"
+fi
 
 # Create directory mirrors
 if [ ! -e $DATA_DIRECTORY/mirrors ]; then
@@ -77,7 +82,9 @@ if [ ! -d "/var/log/toran-proxy/cron" ]; then
 fi
 
 # Create logs symbolic links
-rm -rf $DATA_DIRECTORY/logs
+if [ -e $DATA_DIRECTORY/logs ]; then
+    rm -rf $DATA_DIRECTORY/logs
+fi
 ln -s /var/log/toran-proxy $DATA_DIRECTORY/logs
 ln -s /var/log/toran-proxy /logs
 
@@ -87,15 +94,15 @@ echo "Installing Cron..."
 # Loading Cron time
 if [ "${TORAN_CRON_TIMER}" == "minutes" ]; then
     CRON_TIMER="* * * * *"
-else if [ "${TORAN_CRON_TIMER}" == "five" ]; then
+elif [ "${TORAN_CRON_TIMER}" == "five" ]; then
     CRON_TIMER="*/5 * * * *"
-else if [ "${TORAN_CRON_TIMER}" == "fifteen" ]; then
+elif [ "${TORAN_CRON_TIMER}" == "fifteen" ]; then
     CRON_TIMER="*/15 * * * *"
-else if [ "${TORAN_CRON_TIMER}" == "half" ]; then
+elif [ "${TORAN_CRON_TIMER}" == "half" ]; then
     CRON_TIMER="*/30 * * * *"
-else if [ "${TORAN_CRON_TIMER}" == "hour" ]; then
+elif [ "${TORAN_CRON_TIMER}" == "hour" ]; then
     CRON_TIMER="*/1 * * * *"
-else if [ "${TORAN_CRON_TIMER}" == "daily" ]; then
+elif [ "${TORAN_CRON_TIMER}" == "daily" ]; then
     read CRON_TIMER_HOUR CRON_TIMER_MIN <<< ${TORAN_CRON_TIMER_DAILY_TIME//[:]/ }
     CRON_TIMER="$CRON_TIMER_MIN $CRON_TIMER_HOUR * * * *"
 fi
