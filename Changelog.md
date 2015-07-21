@@ -1,10 +1,11 @@
 # Changelog
 
-**latest**
+**1.1.7-1*
 - Add Cron timer configuration
 - Optimize logs directories
 - Remove launch cron on start to speed up launch
 - Optimize loading permissions
+- Fix bug with token github empty
 
 **1.1.7**
 - Update Toran Proxy to version 1.1.7
