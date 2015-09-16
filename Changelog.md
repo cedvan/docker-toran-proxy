@@ -1,6 +1,7 @@
 # Changelog
 
-**1.1.7-1*
+**1.1.7-1**
+- Fix sed in toran.sh
 - Add Cron timer configuration
 - Optimize logs directories
 - Remove launch cron on start to speed up launch
