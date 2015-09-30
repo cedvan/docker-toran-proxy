@@ -48,6 +48,8 @@ ln -s $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
 if [ ! -e $DATA_DIRECTORY/toran/config.yml ]; then
     cp -f $ASSETS_DIRECTORY/config/config.yml $DATA_DIRECTORY/toran/config.yml
 fi
+# Workaround for Toran bug (hardcoded config path)
+ln -sf $DATA_DIRECTORY/toran/config.yml $WORK_DIRECTORY/app/config/toran.yml
 
 # Load config composer
 mkdir -p $DATA_DIRECTORY/toran/composer
