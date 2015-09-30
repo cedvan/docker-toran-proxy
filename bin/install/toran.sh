@@ -41,7 +41,8 @@ sed -i "s/secret:.*/secret: $TORAN_SECRET/g" $WORK_DIRECTORY/app/config/paramete
 if [ ! -d $DATA_DIRECTORY/toran ]; then
     cp -rf $WORK_DIRECTORY/app/toran $DATA_DIRECTORY/toran
 fi
-ln -sfn $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
+rm -rf $WORK_DIRECTORY/app/toran
+ln -s $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
 
 # Load config toran
 if [ ! -e $DATA_DIRECTORY/toran/config.yml ]; then
@@ -62,11 +63,14 @@ else
 fi
 
 # Create directory mirrors
-if [ ! -e $DATA_DIRECTORY/mirrors ]; then
+if [ ! -d $DATA_DIRECTORY/mirrors ]; then
     echo "Creating mirrors directories..."
     mkdir -p $DATA_DIRECTORY/mirrors
 fi
-ln -sfn $DATA_DIRECTORY/mirrors $WORK_DIRECTORY/web/mirrors
+if [ -d $WORK_DIRECTORY/web/mirrors ]; then
+    rm -rf $WORK_DIRECTORY/web/mirrors
+fi
+ln -s $DATA_DIRECTORY/mirrors $WORK_DIRECTORY/web/mirrors
 
 # Create logs nginx directories
 if [ ! -d "/var/log/toran-proxy/nginx" ]; then
@@ -81,8 +85,14 @@ if [ ! -d "/var/log/toran-proxy/cron" ]; then
 fi
 
 # Create logs symbolic links
-ln -sfn /var/log/toran-proxy $DATA_DIRECTORY/logs
-ln -sfn /var/log/toran-proxy /logs
+if [ -d $DATA_DIRECTORY/logs ]; then
+    rm -rf $DATA_DIRECTORY/logs
+fi
+ln -s /var/log/toran-proxy $DATA_DIRECTORY/logs
+if [ -d /logs ]; then
+    rm -rf /logs
+fi
+ln -s /var/log/toran-proxy /logs
 
 # Installing Cron
 echo "Installing Cron..."
