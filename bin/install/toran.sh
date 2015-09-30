@@ -63,9 +63,12 @@ else
 fi
 
 # Create directory mirrors
-if [ ! -e $DATA_DIRECTORY/mirrors ]; then
+if [ ! -d $DATA_DIRECTORY/mirrors ]; then
     echo "Creating mirrors directories..."
     mkdir -p $DATA_DIRECTORY/mirrors
+fi
+if [ -d $WORK_DIRECTORY/web/mirrors ]; then
+    rm -rf $WORK_DIRECTORY/web/mirrors
 fi
 ln -s $DATA_DIRECTORY/mirrors $WORK_DIRECTORY/web/mirrors
 
@@ -82,10 +85,13 @@ if [ ! -d "/var/log/toran-proxy/cron" ]; then
 fi
 
 # Create logs symbolic links
-if [ -e $DATA_DIRECTORY/logs ]; then
+if [ -d $DATA_DIRECTORY/logs ]; then
     rm -rf $DATA_DIRECTORY/logs
 fi
 ln -s /var/log/toran-proxy $DATA_DIRECTORY/logs
+if [ -d /logs ]; then
+    rm -rf /logs
+fi
 ln -s /var/log/toran-proxy /logs
 
 # Installing Cron
