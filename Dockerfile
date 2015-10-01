@@ -17,8 +17,6 @@ RUN apt-get update -qq \
 # Configure PHP and Nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
     && sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php5/fpm/php.ini \
-    && sed -i "s/;date.timezone.*/date.timezone = Europe\/Paris/" /etc/php5/fpm/php.ini \
-    && sed -i "s/;date.timezone.*/date.timezone = Europe\/Paris/" /etc/php5/cli/php.ini \
     && sed -i "s/;listen.allowed_clients = 127.0.0.1/listen.allowed_clients = 0.0.0.0/" /etc/php5/fpm/pool.d/www.conf \
     && sed -i "s/^user\s*=.*/user = root/" /etc/php5/fpm/pool.d/www.conf \
     && sed -i "s/^group\s*=.*/group = root/" /etc/php5/fpm/pool.d/www.conf
