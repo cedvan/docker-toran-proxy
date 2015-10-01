@@ -11,7 +11,11 @@ TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-false}
 TORAN_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 # Checking Toran Proxy Configuration
-if [ "${TORAN_HTTPS}" != "true" ] && [ "${TORAN_HTTPS}" != "false" ]; then
+if [ "${TORAN_HTTPS}" = "true" ]; then
+    TORAN_SCHEME="https"
+elif [ "${TORAN_HTTPS}" = "false" ]; then
+    TORAN_SCHEME="http"
+else
     echo "ERROR: "
     echo "  Variable TORAN_HTTPS isn't valid ! (Values accepted : true/false)"
     exit 1
@@ -33,7 +37,7 @@ fi
 
 # Load parameters toran
 cp -f $WORK_DIRECTORY/app/config/parameters.yml.dist $WORK_DIRECTORY/app/config/parameters.yml
-sed -i "s/toran_scheme:.*/toran_scheme: $TORAN_HTTPS/g" $WORK_DIRECTORY/app/config/parameters.yml
+sed -i "s/toran_scheme:.*/toran_scheme: $TORAN_SCHEME/g" $WORK_DIRECTORY/app/config/parameters.yml
 sed -i "s/toran_host:.*/toran_host: $TORAN_HOST/g" $WORK_DIRECTORY/app/config/parameters.yml
 sed -i "s/secret:.*/secret: $TORAN_SECRET/g" $WORK_DIRECTORY/app/config/parameters.yml
 
