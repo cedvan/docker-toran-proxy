@@ -138,7 +138,7 @@ Below is the complete list of available options that can be used to customize yo
     - `minutes`: All minutes
     - `five`: All five minutes
     - `fifteen`: All fifteen minutes
-    - `half`: All fifteen minutes
+    - `half`: All thirty minutes
     - `hour`: All hours
     - `daily`: All days at 04:00 (Use *TORAN_CRON_TIMER_DAILY_TIME* for customize time)
 - **TORAN_CRON_TIMER_DAILY_TIME**: Set a time for cron job daily timer in `HH:MM` format. Defaults to `04:00`
