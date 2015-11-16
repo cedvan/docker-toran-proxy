@@ -110,6 +110,7 @@ Go with your browser to **http://toran-proxy.domain.tld**
 docker run --name toran-proxy -d \
     -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
     -e "VIRTUAL_PROTO=https" \
+    -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
     cedvan/toran-proxy:1.1.7-1
 ```
 Go with your browser to **https://toran-proxy.domain.tld**
@@ -124,6 +125,19 @@ docker run --name proxy -d \
     -p 80:80 \
     -v /opt/proxy/htpasswd:/etc/nginx/htpasswd \
     jwilder/nginx-proxy
+```
+
+Add `auth.json` to composer configuration home folder
+
+```
+{
+    "http-basic": {
+        "toran-proxy.domain.tld": {
+            "username": "myUsername",
+            "password": "myPassword"
+        },
+    }
+}
 ```
 
 ## Toran Proxy Options
