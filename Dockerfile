@@ -1,6 +1,10 @@
 FROM cedvan/ubuntu:14.04.20150414
 MAINTAINER dev@cedvan.com
 
+# Install supervisor
+RUN apt-get update -qq \
+    && apt-get install -qqy supervisor
+
 # Install PHP and Nginx
 RUN apt-get update -qq \
     && apt-get install -qqy \
@@ -29,10 +33,17 @@ RUN curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}
     && mv /tmp/toran /var/www
 
 # Load Scripts bash for installing Toran Proxy
+COPY scripts /scripts/toran-proxy/
+RUN chmod -R u+x /scripts/toran-proxy
+
+# Load binaries
 COPY bin /bin/toran-proxy/
-RUN chmod u+x /bin/toran-proxy/*
+RUN chmod -R u+x /bin/toran-proxy
+ENV PATH $PATH:/bin/toran-proxy
 
 # Load assets
+COPY assets/supervisor/conf.d /etc/supervisor/conf.d
+COPY assets/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 COPY assets/vhosts /etc/nginx/sites-available
 COPY assets/config /assets/config
 
@@ -41,4 +52,4 @@ VOLUME /data/toran-proxy
 EXPOSE 80
 EXPOSE 443
 
-CMD /bin/toran-proxy/launch.sh
+CMD /scripts/toran-proxy/launch.sh

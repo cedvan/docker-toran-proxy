@@ -27,3 +27,6 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
 else
     ln -s /etc/nginx/sites-available/toran-proxy-http.conf /etc/nginx/sites-enabled/toran-proxy-http.conf
 fi
+
+# Logs
+mkdir -p $DATA_DIRECTORY/logs/nginx

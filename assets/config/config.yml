@@ -3,6 +3,6 @@ packagist_packages: {  }
 packagist_sync: proxy
 dist_sync_mode: lazy
 git_prefix:
-git_path: /data/toran-proxy/mirrors
+git_path:
 license: null
 license_personal: true
