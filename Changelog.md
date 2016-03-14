@@ -1,6 +1,6 @@
 # Changelog
 
-**latest**
+**1.1.7-2**
 - Add supervisor
 - Redirect logs to stdout
 - Start first sync on startup
