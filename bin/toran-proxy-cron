@@ -1,0 +1,22 @@
+#!/bin/sh
+
+start() {
+    DATE="$(date)"
+    echo ""
+    echo "=========="
+    echo "$DATE - Starting synchronization..."
+
+    # Launch cron
+    cd /var/www && php bin/cron -v
+
+    # Refresh permissions
+    chown -R www-data:www-data /data/toran-proxy/mirrors /data/toran-proxy/toran
+
+    DATE="$(date)"
+    echo "$DATE - Synchronization finished"
+    echo "=========="
+}
+
+case $1 in
+  start) "$1" ;;
+esac

@@ -1,5 +1,12 @@
 # Changelog
 
+**latest**
+- Add supervisor
+- Redirect logs to stdout
+- Start first sync on startup
+- Change `TORAN_CRON_TIMER` to `fifteen` by default
+- Add PHP logs
+
 **1.1.7-1**
 - Fix sed in toran.sh
 - Add Cron timer configuration
