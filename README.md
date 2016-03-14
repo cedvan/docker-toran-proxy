@@ -9,10 +9,10 @@ Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your
 
 ```bash
 docker run --name toran-proxy -d \
-    -p 8080:80 \
+    -p 80:80 \
     cedvan/toran-proxy:1.1.7-2
 ```
-Go with your browser to **localhost:8080**
+Go with your browser to **localhost**
 
 ## Save data
 
@@ -28,7 +28,7 @@ docker run --name toran-proxy -d \
 
 ```bash
 docker run --name toran-proxy -d \
-    -p 8443:443 \
+    -p 443:443 \
     -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
     cedvan/toran-proxy:1.1.7-2
 ```
@@ -38,7 +38,7 @@ docker run --name toran-proxy -d \
 
 ```bash
 docker run --name toran-proxy -d \
-    -p 8443:443 \
+    -p 443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
     cedvan/toran-proxy:1.1.7-2
@@ -49,7 +49,7 @@ Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
 
 ```bash
 docker run --name toran-proxy -d \
-    -p 8443:443 \
+    -p 443:443 \
     -e "TORAN_CRON_TIMER=half" \
     cedvan/toran-proxy:1.1.7-2
 ```
@@ -157,7 +157,7 @@ Below is the complete list of available options that can be used to customize yo
     - `daily`: All days at 04:00 (Use *TORAN_CRON_TIMER_DAILY_TIME* for customize time)
 - **TORAN_CRON_TIMER_DAILY_TIME**: Set a time for cron job daily timer in `HH:MM` format. Defaults to `04:00`
 - **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default null.
-- **TORAN_PHP_TIMEZONE**: Configure timezone PHP. Default `Europe/Paris`.
+- **PHP_TIMEZONE**: Configure timezone PHP. Default `Europe/Paris`.
 
 ## Toran Proxy License
 

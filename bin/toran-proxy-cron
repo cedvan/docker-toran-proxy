@@ -7,10 +7,7 @@ start() {
     echo "$DATE - Starting synchronization..."
 
     # Launch cron
-    cd /var/www && php bin/cron -v
-
-    # Refresh permissions
-    chown -R www-data:www-data /data/toran-proxy/mirrors /data/toran-proxy/toran
+    sudo -u www-data bash -c "cd /var/www && php bin/cron -v"
 
     DATE="$(date)"
     echo "$DATE - Synchronization finished"
