@@ -32,7 +32,7 @@ docker run --name toran-proxy -d \
     -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
     cedvan/toran-proxy:1.1.7-2
 ```
-*Files supported : `id_rsa`, `id_rsa.pub` and `known_hosts`*
+*Files supported : `id_rsa`, `id_rsa.pub`, `config` and `known_hosts`*
 
 ## Enabled HTTPS
 
