@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Add support `ssh/config` for private repository
+
 **1.2.0**
 - Upgrade toran proxy to version 1.2.0
 - Global clean
