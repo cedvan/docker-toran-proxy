@@ -5,6 +5,10 @@ MAINTAINER dev@cedvan.com
 RUN apt-get update -qq \
     && apt-get install -qqy supervisor
 
+# Install ssh
+RUN apt-get update -qq \
+    && apt-get install -qqy ssh
+
 # Install PHP and Nginx
 RUN apt-get update -qq \
     && apt-get install -qqy \
@@ -42,6 +46,9 @@ COPY assets/supervisor/conf.d /etc/supervisor/conf.d
 COPY assets/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 COPY assets/vhosts /etc/nginx/sites-available
 COPY assets/config /assets/config
+
+# Clean
+RUN rm -rf /var/lib/apt/lists/*
 
 VOLUME /data/toran-proxy
 

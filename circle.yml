@@ -1,0 +1,15 @@
+machine:
+  services:
+    - docker
+dependencies:
+  cache_directories:
+    - "~/docker-toran-proxy"
+  override:
+    - docker info
+    - if [[ -e ~/docker-toran-proxy/image.tar ]]; then docker load --input ~/docker-toran-proxy/image.tar; fi
+    - docker build -t cedvan/toran-proxy .
+    - mkdir -p ~/docker-toran-proxy; docker save --output ~/docker-toran-proxy/image.tar cedvan/toran-proxy
+test:
+  override:
+    - docker run -it cedvan/toran-proxy echo "Ok"
+    - docker logs cedvan/toran-proxy

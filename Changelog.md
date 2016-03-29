@@ -3,8 +3,10 @@
 **1.2.0**
 - Upgrade toran proxy to version 1.2.0
 - Global clean
+- Add support `ssh/config` for private repository
 - Rename environment variable `TORAN_PHP_TIMEZONE` to `PHP_TIMEZONE`
 - Change user nginx and php-fpm from `root` to `www-data`
+- Add `ssh` package
 - Upgrade image base to `cedvan/ubuntu:14.04.20160326`
 
 **1.1.7-2**
