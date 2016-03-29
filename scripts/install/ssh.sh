@@ -22,4 +22,9 @@ if [ -e "$DATA_DIRECTORY/ssh" ]; then
         ln -s $DATA_DIRECTORY/ssh/known_hosts /root/.ssh/known_hosts
     fi
 
+    if [ -e "$DATA_DIRECTORY/ssh/config" ]; then
+        chmod 644 $DATA_DIRECTORY/ssh/config
+        ln -s $DATA_DIRECTORY/ssh/config /root/.ssh/config
+    fi
+
 fi
