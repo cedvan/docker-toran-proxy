@@ -37,9 +37,9 @@ fi
 
 # Load parameters toran
 cp -f $WORK_DIRECTORY/app/config/parameters.yml.dist $WORK_DIRECTORY/app/config/parameters.yml
-sed -i "s#toran_scheme:.*#toran_scheme: $TORAN_SCHEME#g" $WORK_DIRECTORY/app/config/parameters.yml
-sed -i "s#toran_host:.*#toran_host: $TORAN_HOST#g" $WORK_DIRECTORY/app/config/parameters.yml
-sed -i "s#secret:.*#secret: $TORAN_SECRET#g" $WORK_DIRECTORY/app/config/parameters.yml
+sed -i "s|toran_scheme:.*|toran_scheme: $TORAN_SCHEME|g" $WORK_DIRECTORY/app/config/parameters.yml
+sed -i "s|toran_host:.*|toran_host: $TORAN_HOST|g" $WORK_DIRECTORY/app/config/parameters.yml
+sed -i "s|secret:.*|secret: $TORAN_SECRET|g" $WORK_DIRECTORY/app/config/parameters.yml
 
 # Load toran data
 if [ ! -d $DATA_DIRECTORY/toran ]; then
