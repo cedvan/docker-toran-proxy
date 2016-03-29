@@ -1,10 +1,11 @@
 # Changelog
 
-**latest**
+**1.2.0**
 - Upgrade toran proxy to version 1.2.0
 - Global clean
 - Rename environment variable `TORAN_PHP_TIMEZONE` to `PHP_TIMEZONE`
 - Change user nginx and php-fpm from `root` to `www-data`
+- Upgrade image base to `cedvan/ubuntu:14.04.20160326`
 
 **1.1.7-2**
 - Add supervisor
@@ -12,7 +13,6 @@
 - Start first sync on startup
 - Change `TORAN_CRON_TIMER` to `fifteen` by default
 - Add PHP logs
-- Upgrade image base to `cedvan/ubuntu:14.04.20160326`
 
 **1.1.7-1**
 - Fix sed in toran.sh

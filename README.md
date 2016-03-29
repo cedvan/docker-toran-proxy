@@ -10,7 +10,8 @@ Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your
 ```bash
 docker run --name toran-proxy -d \
     -p 80:80 \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 Go with your browser to **localhost**
 
@@ -21,7 +22,8 @@ Files are saved to `/data/toran-proxy` in container. Just mount this volume for 
 ```bash
 docker run --name toran-proxy -d \
     -v /opt/toran-proxy:/data/toran-proxy \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 
 ## Add ssh config for private repository
@@ -30,7 +32,8 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 *Files supported : `id_rsa`, `id_rsa.pub` and `known_hosts`*
 
@@ -41,7 +44,8 @@ docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
 
@@ -51,7 +55,8 @@ Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
 docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_CRON_TIMER=half" \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 
 ### Generation of Self Signed Certificates
@@ -99,7 +104,8 @@ Next add environment variables **VIRTUAL_HOST** and **VIRTUAL_PROTO** to contain
 docker run --name toran-proxy -d \
     -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
     -e "VIRTUAL_PROTO=http" \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 Go with your browser to **http://toran-proxy.domain.tld**
 
@@ -111,7 +117,8 @@ docker run --name toran-proxy -d \
     -e "VIRTUAL_HOST=toran-proxy.domain.tld" \
     -e "VIRTUAL_PROTO=https" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
-    cedvan/toran-proxy:1.1.7-2
+    cedvan/toran-proxy:1.2.0
+
 ```
 Go with your browser to **https://toran-proxy.domain.tld**
 
