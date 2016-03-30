@@ -1,6 +1,7 @@
 # Changelog
 
 **1.2.0**
+- Optimize README.md
 - Upgrade toran proxy to version 1.2.0
 - Global clean
 - Add support `ssh/config` for private repository
