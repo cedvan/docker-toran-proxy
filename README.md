@@ -8,6 +8,8 @@
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/cedvan/docker-toran-proxy.svg)](http://isitmaintained.com/project/cedvan/docker-toran-proxy "Percentage of issues still open")
 [![GitHub license](https://img.shields.io/:license-mit-blue.svg?style=flat-square)]()
 
+![toran-proxy](https://raw.githubusercontent.com/cedvan/docker-toran-proxy/master/img/toran-proxy.png "Toran-Proxy")
+
 Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your own server or even inside your office. This offers a few benefits:
 
 - **Redundant infrastructure to ensure your deployments never fail and your developers can work at any time.** Packages will be installed from your proxy with a fallback to GitHub, ensuring a maximum availability.
