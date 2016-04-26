@@ -28,14 +28,14 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
     fi
 
     if [ "${TORAN_REVERSE}" == "true" ]; then
-        ln -s /etc/nginx/sites-available/toran-proxy-https.conf /etc/nginx/sites-enabled/toran-proxy-https-reverse.conf
+        ln -s /etc/nginx/sites-available/toran-proxy-https-reverse.conf /etc/nginx/sites-enabled/toran-proxy-https-reverse.conf
     else
         ln -s /etc/nginx/sites-available/toran-proxy-https.conf /etc/nginx/sites-enabled/toran-proxy-https.conf
     fi
 else
 
     if [ "${TORAN_REVERSE}" == "true" ]; then
-        ln -s /etc/nginx/sites-available/toran-proxy-https.conf /etc/nginx/sites-enabled/toran-proxy-http-reverse.conf
+        ln -s /etc/nginx/sites-available/toran-proxy-http-reverse.conf /etc/nginx/sites-enabled/toran-proxy-http-reverse.conf
     else
         ln -s /etc/nginx/sites-available/toran-proxy-http.conf /etc/nginx/sites-enabled/toran-proxy-http.conf
     fi
