@@ -52,18 +52,17 @@ ln -s $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
 
 # Load config composer
 mkdir -p $DATA_DIRECTORY/toran/composer
-if [ -e $DATA_DIRECTORY/toran/composer/auth.json ]; then
-    rm -rf $DATA_DIRECTORY/toran/composer/auth.json
-fi
-if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
-    echo "Installing Token Github..."
+if [ ! -e $DATA_DIRECTORY/toran/composer/auth.json ]; then
     cp -f $ASSETS_DIRECTORY/config/composer.json $DATA_DIRECTORY/toran/composer/auth.json
-    sed -i "s|\"github.com\":|\"github.com\":\"$TORAN_TOKEN_GITHUB\"|g" $DATA_DIRECTORY/toran/composer/auth.json
-else
-    echo "WARNING: "
-    echo "  Variable TORAN_TOKEN_GITHUB is empty !"
-    echo "  You need to setup a GitHub OAuth token because Toran makes a lot of requests and will use up the API calls limit if it is unauthenticated"
-    echo "  Head to https://github.com/settings/tokens/new to create a token. You need to select the public_repo credentials, and the repo one if you are going to use private repositories from GitHub with Toran."
+    if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
+        echo "Installing Token Github..."
+        sed -i "s|\"github.com\":|\"github.com\":\"$TORAN_TOKEN_GITHUB\"|g" $DATA_DIRECTORY/toran/composer/auth.json
+    else
+        echo "WARNING: "
+        echo "  Variable TORAN_TOKEN_GITHUB is empty !"
+        echo "  You need to setup a GitHub OAuth token because Toran makes a lot of requests and will use up the API calls limit if it is unauthenticated"
+        echo "  Head to https://github.com/settings/tokens/new to create a token. You need to select the public_repo credentials, and the repo one if you are going to use private repositories from GitHub with Toran."
+    fi
 fi
 
 # Create directory mirrors
