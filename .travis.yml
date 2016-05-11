@@ -10,8 +10,8 @@ script:
 
 after_script:
    - docker images
-   - docker run -dt --name=toran-proxy cedvan/toran-proxy:latest
+   - docker run -dt --name=toran-proxy bankiru/toran-proxy:latest
    - sleep 5
    - docker logs toran-proxy
-   - docker rm -f  toran-proxy
+   - docker rm -f toran-proxy
 

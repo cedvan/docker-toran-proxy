@@ -1,58 +1,48 @@
-FROM cedvan/ubuntu:14.04.20160326
-MAINTAINER dev@cedvan.com
-
-# Install supervisor
-RUN apt-get update -qq \
-    && apt-get install -qqy supervisor
-
-# Install ssh
-RUN apt-get update -qq \
-    && apt-get install -qqy ssh
-
-# Install PHP and Nginx
-RUN apt-get update -qq \
-    && apt-get install -qqy \
-        git \
-        apt-transport-https \
-        daemontools \
-        php5-fpm \
-        php5-json \
-        php5-cli \
-        php5-intl \
-        php5-curl \
-        nginx
-
-# Configure PHP and Nginx
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+FROM ubuntu:trusty
+MAINTAINER Boris Gorbylev <ekho@ekho.name>
 
 # Version Toran Proxy
-ENV TORAN_PROXY_VERSION 1.2.0
+ENV TORAN_PROXY_VERSION 1.4.2
 
-# Download Toran Proxy
-RUN curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}.tgz | tar xzC /tmp \
-    && mv /tmp/toran /var/www
+# Install software
+RUN export DEBIAN_FRONTEND=noninteractive \
+ && apt-get update \
+ && apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    daemontools \
+    git \
+    net-tools \
+    nginx \
+    php5-cli \
+    php5-curl \
+    php5-fpm \
+    php5-intl \
+    php5-json \
+    ssh \
+    supervisor \
+    unzip \
+    wget \
+  && apt-get autoremove -y \
+  && apt-get autoclean all \
+  && rm -rf /var/lib/apt/lists/*
 
-# Load Scripts bash for installing Toran Proxy
 COPY scripts /scripts/toran-proxy/
-RUN chmod -R u+x /scripts/toran-proxy
-
-# Load binaries
-COPY bin /bin/toran-proxy/
-RUN chmod -R u+x /bin/toran-proxy
-ENV PATH $PATH:/bin/toran-proxy
-
-# Load assets
 COPY assets/supervisor/conf.d /etc/supervisor/conf.d
 COPY assets/supervisor/supervisord.conf /etc/supervisor/supervisord.conf
 COPY assets/vhosts /etc/nginx/sites-available
 COPY assets/config /assets/config
 
-# Clean
-RUN rm -rf /var/lib/apt/lists/*
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
+ && curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}.tgz | tar xzC /tmp \
+ && mv /tmp/toran /var/www \
+ && chmod -R u+x /scripts/toran-proxy
+
+ENV PATH $PATH:/scripts/toran-proxy
 
 VOLUME /data/toran-proxy
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE 80 443
 
 CMD /scripts/toran-proxy/launch.sh

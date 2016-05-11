@@ -2,4 +2,7 @@
 LICENSE
 VERSION
 README.md
+Changelog.md
 Makefile
+img/
+.travis.yml
