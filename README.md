@@ -1,14 +1,14 @@
 # Docker Toran Proxy
 
-[![Build Status](https://img.shields.io/travis/cedvan/docker-toran-proxy/master.svg?style=flat-square)](https://travis-ci.org/cedvan/docker-toran-proxy)
-[![Docker Pulls](https://img.shields.io/docker/pulls/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
-[![Docker Stars](https://img.shields.io/docker/stars/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
-[![](https://badge.imagelayers.io/cedvan/toran-proxy:latest.svg)](https://imagelayers.io/?images=cedvan/toran-proxy:latest 'Get your own badge on imagelayers.io')
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/cedvan/docker-toran-proxy.svg)](http://isitmaintained.com/project/cedvan/docker-toran-proxy "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/cedvan/docker-toran-proxy.svg)](http://isitmaintained.com/project/cedvan/docker-toran-proxy "Percentage of issues still open")
+[![Build Status](https://img.shields.io/travis/bankiru/docker-toran-proxy/master.svg?style=flat-square)](https://travis-ci.org/bankiru/docker-toran-proxy)
+[![Docker Pulls](https://img.shields.io/docker/pulls/bankiru/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/bankiru/toran-proxy/)
+[![Docker Stars](https://img.shields.io/docker/stars/bankiru/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/bankiru/toran-proxy/)
+[![](https://badge.imagelayers.io/bankiru/toran-proxy:latest.svg)](https://imagelayers.io/?images=bankiru/toran-proxy:latest 'Get your own badge on imagelayers.io')
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/bankiru/docker-toran-proxy.svg)](http://isitmaintained.com/project/bankiru/docker-toran-proxy "Average time to resolve an issue")
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/bankiru/docker-toran-proxy.svg)](http://isitmaintained.com/project/bankiru/docker-toran-proxy "Percentage of issues still open")
 [![GitHub license](https://img.shields.io/:license-mit-blue.svg?style=flat-square)]()
 
-![toran-proxy](https://raw.githubusercontent.com/cedvan/docker-toran-proxy/master/img/toran-proxy.png "Toran-Proxy")
+![toran-proxy](https://raw.githubusercontent.com/bankiru/docker-toran-proxy/master/img/toran-proxy.png "Toran-Proxy")
 
 Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your own server or even inside your office. This offers a few benefits:
 
@@ -20,7 +20,7 @@ Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your
 ```bash
 docker run --name toran-proxy -d \
     -p 80:80 \
-    cedvan/toran-proxy:1.2.0
+    bankiru/toran-proxy:1.4.4
 ```
 Go with your browser to **localhost**
 
@@ -31,7 +31,7 @@ Files are saved to `/data/toran-proxy` in container. Just mount this volume for 
 ```bash
 docker run --name toran-proxy -d \
     -v /opt/toran-proxy:/data/toran-proxy \
-    cedvan/toran-proxy:1.2.0
+    bankiru/toran-proxy:1.4.4
 ```
 
 ## Add ssh config for private repository
@@ -40,7 +40,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
-    cedvan/toran-proxy:1.2.0
+    bankiru/toran-proxy:1.4.4
 ```
 *Files supported : `id_rsa`, `id_rsa.pub`, `config` and `known_hosts`*
 
@@ -50,7 +50,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_CRON_TIMER=half" \
-    cedvan/toran-proxy:1.2.0
+    bankiru/toran-proxy:1.4.4
 ```
 
 ## Enabled HTTPS
@@ -60,7 +60,7 @@ docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
-    cedvan/toran-proxy:1.2.0
+    bankiru/toran-proxy:1.4.4
 ```
 Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
 

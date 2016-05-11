@@ -11,7 +11,7 @@ if [ -d $DATA_DIRECTORY/logs ]; then
 fi
 
 # Initilisation
-source $SCRIPTS_DIRECTORY/install/php.sh
+source $SCRIPTS_DIRECTORY/install/php-fpm.sh
 source $SCRIPTS_DIRECTORY/install/nginx.sh
 source $SCRIPTS_DIRECTORY/install/ssh.sh
 source $SCRIPTS_DIRECTORY/install/toran.sh

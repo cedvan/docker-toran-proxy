@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Upgrade toran proxy to version 1.3.2
+
 **1.2.0**
 - Optimize README.md
 - Upgrade toran proxy to version 1.2.0
