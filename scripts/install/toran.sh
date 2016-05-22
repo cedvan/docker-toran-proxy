@@ -22,6 +22,12 @@ else
     exit 1
 fi
 
+if [ "${TORAN_REVERSE}" != "true" ] || [ "${TORAN_REVERSE}" != "false" ]; then
+    echo "ERROR: "
+    echo "  Variable TORAN_REVERSE isn't valid ! (Values accepted : true/false)"
+    exit 1
+fi
+
 # Checking Cron time
 if [ "${TORAN_CRON_TIMER}" != "minutes" ] && [ "${TORAN_CRON_TIMER}" != "five" ] && [ "${TORAN_CRON_TIMER}" != "fifteen" ] && [ "${TORAN_CRON_TIMER}" != "half" ] && [ "${TORAN_CRON_TIMER}" != "hour" ] && [ "${TORAN_CRON_TIMER}" != "daily" ]; then
     echo "ERROR: "
