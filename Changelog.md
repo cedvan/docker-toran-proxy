@@ -2,6 +2,7 @@
 
 **1.4.2**
 - Upgrade toran proxy to version 1.4.2
+- Adding reverse proxy functionality
 
 **1.2.0**
 - Optimize README.md

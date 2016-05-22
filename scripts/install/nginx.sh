@@ -25,20 +25,13 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
         ln -s $DATA_DIRECTORY/certs /usr/local/share/ca-certificates/toran-proxy
         update-ca-certificates
 
-    fi
-
-    if [ "${TORAN_REVERSE}" == "true" ]; then
-        ln -s /etc/nginx/sites-available/toran-proxy-https-reverse.conf /etc/nginx/sites-enabled/toran-proxy-https-reverse.conf
-    else
         ln -s /etc/nginx/sites-available/toran-proxy-https.conf /etc/nginx/sites-enabled/toran-proxy-https.conf
+
+    else
+        ln -s /etc/nginx/sites-available/toran-proxy-https-reverse.conf /etc/nginx/sites-enabled/toran-proxy-https-reverse.conf
     fi
 else
-
-    if [ "${TORAN_REVERSE}" == "true" ]; then
-        ln -s /etc/nginx/sites-available/toran-proxy-http-reverse.conf /etc/nginx/sites-enabled/toran-proxy-http-reverse.conf
-    else
-        ln -s /etc/nginx/sites-available/toran-proxy-http.conf /etc/nginx/sites-enabled/toran-proxy-http.conf
-    fi
+    ln -s /etc/nginx/sites-available/toran-proxy-http.conf /etc/nginx/sites-enabled/toran-proxy-http.conf
 fi
 
 # Logs
