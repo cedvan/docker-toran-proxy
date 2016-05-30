@@ -1,6 +1,6 @@
 # Changelog
 
-**latest**
+**1.3.2**
 - Upgrade toran proxy to version 1.3.2
 
 **1.2.0**
