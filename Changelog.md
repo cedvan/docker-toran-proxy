@@ -1,6 +1,7 @@
 # Changelog
 
 **latest**
+- Upgrade toran proxy to version 1.4.4
 - Add option `TORAN_REVERSE` to running toran proxy behind a reverse proxy for i.e. SSL termination.
 
 **1.3.2**
