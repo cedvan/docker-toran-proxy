@@ -22,7 +22,7 @@ else
     exit 1
 fi
 
-if [ "${TORAN_REVERSE}" != "true" ] || [ "${TORAN_REVERSE}" != "false" ]; then
+if [ "${TORAN_REVERSE}" != "true" ] && [ "${TORAN_REVERSE}" != "false" ]; then
     echo "ERROR: "
     echo "  Variable TORAN_REVERSE isn't valid ! (Values accepted : true/false)"
     exit 1
