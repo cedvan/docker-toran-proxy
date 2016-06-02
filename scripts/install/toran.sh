@@ -59,8 +59,8 @@ ln -s $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
 # Load config composer
 mkdir -p $DATA_DIRECTORY/toran/composer
 if [ ! -e $DATA_DIRECTORY/toran/composer/auth.json ]; then
-    cp -f $ASSETS_DIRECTORY/config/composer.json $DATA_DIRECTORY/toran/composer/auth.json
     if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
+        cp -f $ASSETS_DIRECTORY/config/composer.json $DATA_DIRECTORY/toran/composer/auth.json
         echo "Installing Token Github..."
         sed -i "s|\"github.com\":|\"github.com\":\"$TORAN_TOKEN_GITHUB\"|g" $DATA_DIRECTORY/toran/composer/auth.json
     else
@@ -73,7 +73,7 @@ else
   if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
       echo "Updating Token Github..."
       sed -i "s|\"github.com\":|\"github.com\":\"$TORAN_TOKEN_GITHUB\"|g" $DATA_DIRECTORY/toran/composer/auth.json
-  else
+  fi 
 fi
 
 # Create directory mirrors
