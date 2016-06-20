@@ -1,5 +1,7 @@
 # Docker Toran Proxy
 
+[![Join the chat at https://gitter.im/cedvan/docker-toran-proxy](https://badges.gitter.im/cedvan/docker-toran-proxy.svg)](https://gitter.im/cedvan/docker-toran-proxy?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://img.shields.io/travis/cedvan/docker-toran-proxy/master.svg?style=flat-square)](https://travis-ci.org/cedvan/docker-toran-proxy)
 [![Docker Pulls](https://img.shields.io/docker/pulls/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
 [![Docker Stars](https://img.shields.io/docker/stars/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
