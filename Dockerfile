@@ -26,7 +26,7 @@ RUN apt-get update -qq \
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Version Toran Proxy
-ENV TORAN_PROXY_VERSION 1.3.2
+ENV TORAN_PROXY_VERSION 1.4.4
 
 # Download Toran Proxy
 RUN curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}.tgz | tar xzC /tmp \
