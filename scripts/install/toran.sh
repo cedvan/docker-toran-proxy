@@ -73,7 +73,7 @@ else
   if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
       echo "Updating Token Github..."
       sed -i "s|\"github.com\":|\"github.com\":\"$TORAN_TOKEN_GITHUB\"|g" $DATA_DIRECTORY/toran/composer/auth.json
-  fi 
+  fi
 fi
 
 # Create directory mirrors
