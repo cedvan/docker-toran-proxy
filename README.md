@@ -5,10 +5,11 @@
 [![Build Status](https://img.shields.io/travis/cedvan/docker-toran-proxy/master.svg?style=flat-square)](https://travis-ci.org/cedvan/docker-toran-proxy)
 [![Docker Pulls](https://img.shields.io/docker/pulls/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
 [![Docker Stars](https://img.shields.io/docker/stars/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
-[![](https://badge.imagelayers.io/cedvan/toran-proxy:latest.svg)](https://imagelayers.io/?images=cedvan/toran-proxy:latest 'Get your own badge on imagelayers.io')
+[![Docker image](https://images.microbadger.com/badges/image/cedvan/toran-proxy.svg?style=flat-square)](https://microbadger.com/#/images/cedvan/toran-proxy "Size docker image on Docker Hub")
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/cedvan/docker-toran-proxy.svg)](http://isitmaintained.com/project/cedvan/docker-toran-proxy "Average time to resolve an issue")
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/cedvan/docker-toran-proxy.svg)](http://isitmaintained.com/project/cedvan/docker-toran-proxy "Percentage of issues still open")
 [![GitHub license](https://img.shields.io/:license-mit-blue.svg?style=flat-square)]()
+
 
 ![toran-proxy](https://raw.githubusercontent.com/cedvan/docker-toran-proxy/master/img/toran-proxy.png "Toran-Proxy")
 
