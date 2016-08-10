@@ -132,6 +132,10 @@ Below is the complete list of available options that can be used to customize yo
 By default, Toran proxy license is for personal use.
 You can add a license from the Toran proxy interface
 
+## Contributing
+
+See [CONTRIBUTING](CONTRIBUTING.md) file.
+
 ## References
 
 Toran is built by Jordi Boggiano, lead developer of Composer. As such he can make sure they work well together. No surprises.
