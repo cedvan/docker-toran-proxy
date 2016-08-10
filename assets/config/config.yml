@@ -1,5 +1,6 @@
 repositories: {  }
-packagist_packages: {  }
+public_packages: {  }
+public_repositories: {  }
 packagist_sync: proxy
 dist_sync_mode: lazy
 git_prefix:
