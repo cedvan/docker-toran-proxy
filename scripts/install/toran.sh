@@ -73,8 +73,19 @@ else
   if [ "${TORAN_TOKEN_GITHUB}" != "false" ]; then
       echo "Updating Token Github..."
       sed -i "s|\"github.com\":|\"github.com\":\"$TORAN_TOKEN_GITHUB\"|g" $DATA_DIRECTORY/toran/composer/auth.json
-  fi 
+  fi
 fi
+
+# Create packages directory
+if [ ! -d $DATA_DIRECTORY/packagist ]; then
+    echo "Creating packages directory..."
+    mkdir -p $DATA_DIRECTORY/packagist
+fi
+if [ -d $WORK_DIRECTORY/web/repo/packagist/p ]; then
+    rm -rf $WORK_DIRECTORY/web/repo/packagist/p
+fi
+mkdir -p $WORK_DIRECTORY/web/repo/packagist
+ln -s $DATA_DIRECTORY/packagist $WORK_DIRECTORY/web/repo/packagist/p
 
 # Create directory mirrors
 if [ ! -d $DATA_DIRECTORY/mirrors ]; then
