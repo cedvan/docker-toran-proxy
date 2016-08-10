@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Upgrade toran proxy to version 1.4.4
+
 **1.4.3**
 - Upgrade toran proxy to version 1.4.3
 
