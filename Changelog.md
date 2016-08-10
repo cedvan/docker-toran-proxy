@@ -2,6 +2,9 @@
 
 **1.3.2**
 - Upgrade toran proxy to version 1.3.2
+- Fix create packages directory
+- Fix bad restart synchronisation
+- Add microbadger to report docker image size
 - Add option `TORAN_REVERSE` to running toran proxy behind a reverse proxy for i.e. SSL termination.
 
 **1.2.0**
