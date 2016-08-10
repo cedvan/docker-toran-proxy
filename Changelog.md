@@ -1,6 +1,7 @@
 # Changelog
 
 **latest**
+- Redirection `http` to `https` auto with use https vhost type
 
 **1.5.1**
 - Upgrade toran proxy to version 1.5.1
