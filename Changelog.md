@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Upgrade toran proxy to version 1.5.1
+
 **1.5.0**
 - Upgrade toran proxy to version 1.5.0
 - Add `monorepo` to `config.yml` of toran proxy
