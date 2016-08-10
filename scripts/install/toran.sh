@@ -148,6 +148,5 @@ echo "Loading permissions..."
 chmod -R 777 $WORK_DIRECTORY/app/cache
 chown -R www-data:www-data \
     $WORK_DIRECTORY \
-    $DATA_DIRECTORY/logs \
     $DATA_DIRECTORY/toran \
     $DATA_DIRECTORY/mirrors
