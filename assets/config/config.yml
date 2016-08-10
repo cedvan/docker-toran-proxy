@@ -6,3 +6,4 @@ git_prefix:
 git_path:
 license: null
 license_personal: true
+track_downloads: false

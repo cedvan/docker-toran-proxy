@@ -1,5 +1,10 @@
 # Changelog
 
+**latest**
+- Upgrade toran proxy to version 1.4.0
+- Add toran proxy logs to data volume saved
+- Add `track_downloads` to `config.yml` of toran proxy
+
 **1.3.2**
 - Upgrade toran proxy to version 1.3.2
 - Fix create packages directory

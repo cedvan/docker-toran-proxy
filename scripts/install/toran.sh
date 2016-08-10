@@ -119,10 +119,16 @@ fi
 echo "$CRON_TIMER root supervisorctl -u supervisor -p supervisor start toran-proxy-cron" >> /etc/cron.d/toran-proxy
 echo "" >> /etc/cron.d/toran-proxy
 
+# Load toran logs
+mkdir -p $DATA_DIRECTORY/logs/toran
+rm -f $WORK_DIRECTORY/app/logs/prod.log
+ln -s $DATA_DIRECTORY/logs/toran/prod.log $WORK_DIRECTORY/app/logs/prod.log
+
 # Loading permissions
 echo "Loading permissions..."
 chmod -R 777 $WORK_DIRECTORY/app/cache
 chown -R www-data:www-data \
     $WORK_DIRECTORY \
+    $DATA_DIRECTORY/logs \
     $DATA_DIRECTORY/toran \
     $DATA_DIRECTORY/mirrors
