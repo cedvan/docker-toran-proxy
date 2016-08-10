@@ -8,7 +8,7 @@ Here are few rules to follow for a easier code review before the maintainers acc
 
 - Run the build.
 - Update `README.md`.
-- Update `Changelog.md`.
+- Update `Changelog.md` (Write changes under `**latest**`).
 - Write [commit messages that make sense](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
 
 ##### Rules Pull Request
