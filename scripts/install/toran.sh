@@ -10,6 +10,7 @@ TORAN_CRON_TIMER=${TORAN_CRON_TIMER:-fifteen}
 TORAN_CRON_TIMER_DAILY_TIME=${TORAN_CRON_TIMER_DAILY_TIME:-04:00}
 TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-false}
 TORAN_TRACK_DOWNLOADS=${TORAN_TRACK_DOWNLOADS:-false}
+TORAN_MONO_REPO=${TORAN_MONO_REPO:-false}
 TORAN_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 # Checking Toran Proxy Configuration
@@ -32,6 +33,12 @@ fi
 if [ "${TORAN_TRACK_DOWNLOADS}" != "true" ] && [ "${TORAN_TRACK_DOWNLOADS}" != "false" ]; then
     echo "ERROR: "
     echo "  Variable TORAN_TRACK_DOWNLOADS isn't valid ! (Values accepted : true/false)"
+    exit 1
+fi
+
+if [ "${TORAN_MONO_REPO}" != "true" ] && [ "${TORAN_MONO_REPO}" != "false" ]; then
+    echo "ERROR: "
+    echo "  Variable TORAN_MONO_REPO isn't valid ! (Values accepted : true/false)"
     exit 1
 fi
 
@@ -65,6 +72,7 @@ ln -s $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
 
 # Load config toran
 sed -i "s|track_downloads:.*|track_downloads: $TORAN_TRACK_DOWNLOADS|g" $DATA_DIRECTORY/toran/config.yml
+sed -i "s|monorepo:.*|monorepo: $TORAN_MONO_REPO|g" $DATA_DIRECTORY/toran/config.yml
 
 # Load config composer
 mkdir -p $DATA_DIRECTORY/toran/composer
