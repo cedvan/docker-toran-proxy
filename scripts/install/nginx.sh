@@ -9,16 +9,37 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
 
         echo "Loading HTTPS Certificates..."
 
-        if [ ! -e "$DATA_DIRECTORY/certs/toran-proxy.key" ]; then
-            echo "ERROR: "
-            echo "  Please add toran-proxy.key in folder certs/"
-            exit 1
-        fi
+        if [ ! -e "${DATA_DIRECTORY}/certs/toran-proxy.key" ] && [ ! -e "${DATA_DIRECTORY}/certs/toran-proxy.crt" ]; then
 
-        if [ ! -e "$DATA_DIRECTORY/certs/toran-proxy.crt" ]; then
-            echo "ERROR: "
-            echo "  Please add toran-proxy.crt in folder certs/"
-            exit 1
+            echo "Generating self-signed HTTPS Certificates..."
+
+            mkdir -p ${DATA_DIRECTORY}/certs
+
+            openssl req \
+                -x509 \
+                -nodes \
+                -days 365 \
+                -newkey rsa:2048 \
+                -keyout "${DATA_DIRECTORY}/certs/toran-proxy.key" \
+                -out "${DATA_DIRECTORY}/certs/toran-proxy.crt" \
+                -subj "/C=SS/ST=SS/L=SelfSignedCity/O=SelfSignedOrg/CN=${TORAN_HOST}"
+
+        elif [ -e "${DATA_DIRECTORY}/certs/toran-proxy.key" ] && [ -e "${DATA_DIRECTORY}/certs/toran-proxy.crt" ]; then
+
+            echo "Using provided HTTPS Certificates..."
+
+        else
+
+            if [ ! -e "${DATA_DIRECTORY}/certs/toran-proxy.key" ]; then
+                echo "ERROR: "
+                echo "  File toran-proxy.key exists in folder certs/ but no toran-proxy.crt"
+                exit 1
+            else
+                echo "ERROR: "
+                echo "  File toran-proxy.crt exists in folder certs/ but no toran-proxy.key"
+                exit 1
+            fi
+
         fi
 
         # Add certificates trusted

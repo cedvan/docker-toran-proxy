@@ -2,6 +2,7 @@
 
 **latest**
 - Redirection `http` to `https` auto with use https vhost type
+- Generate self-signed certificates automatically
 
 **1.5.1**
 - Upgrade toran proxy to version 1.5.1

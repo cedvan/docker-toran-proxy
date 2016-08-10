@@ -64,31 +64,7 @@ docker run --name toran-proxy -d \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
     cedvan/toran-proxy:1.5.1
 ```
-Add **toran-proxy.key** and **toran-proxy.crt** in folder **certs**
-
-#### Generation of Self Signed Certificates
-
-Generation of self-signed SSL certificates involves a simple 3 step procedure.
-
-**STEP 1**: Create the server private key
-
-```bash
-openssl genrsa -out toran-proxy.key 2048
-```
-
-**STEP 2**: Create the certificate signing request (CSR)
-
-```bash
-openssl req -new -key toran-proxy.key -out toran-proxy.csr
-```
-
-**STEP 3**: Sign the certificate using the private key and CSR
-
-```bash
-openssl x509 -req -days 365 -in toran-proxy.csr -signkey toran-proxy.key -out toran-proxy.crt
-```
-
-Congratulations! you have now generated an SSL certificate thats valid for 365 days.
+Add your **toran-proxy.key** and **toran-proxy.crt** in folder **certs**. If `toran-proxy.key` and `toran-proxy.crt` do not exist, the container will create self-signed certificates
 
 ## HTTP Authentification
 
