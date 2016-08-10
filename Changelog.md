@@ -1,5 +1,8 @@
 # Changelog
 
+**latest**
+- Upgrade toran proxy to version 1.4.1
+
 **1.4.0**
 - Upgrade toran proxy to version 1.4.0
 - Add toran proxy logs to data volume saved
