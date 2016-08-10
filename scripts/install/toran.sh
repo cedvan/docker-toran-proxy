@@ -9,6 +9,7 @@ TORAN_REVERSE=${TORAN_REVERSE:-false}
 TORAN_CRON_TIMER=${TORAN_CRON_TIMER:-fifteen}
 TORAN_CRON_TIMER_DAILY_TIME=${TORAN_CRON_TIMER_DAILY_TIME:-04:00}
 TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-false}
+TORAN_TRACK_DOWNLOADS=${TORAN_TRACK_DOWNLOADS:-false}
 TORAN_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
 # Checking Toran Proxy Configuration
@@ -25,6 +26,12 @@ fi
 if [ "${TORAN_REVERSE}" != "true" ] && [ "${TORAN_REVERSE}" != "false" ]; then
     echo "ERROR: "
     echo "  Variable TORAN_REVERSE isn't valid ! (Values accepted : true/false)"
+    exit 1
+fi
+
+if [ "${TORAN_TRACK_DOWNLOADS}" != "true" ] && [ "${TORAN_TRACK_DOWNLOADS}" != "false" ]; then
+    echo "ERROR: "
+    echo "  Variable TORAN_TRACK_DOWNLOADS isn't valid ! (Values accepted : true/false)"
     exit 1
 fi
 
@@ -55,6 +62,9 @@ if [ ! -d $DATA_DIRECTORY/toran ]; then
 fi
 rm -rf $WORK_DIRECTORY/app/toran
 ln -s $DATA_DIRECTORY/toran $WORK_DIRECTORY/app/toran
+
+# Load config toran
+sed -i "s|track_downloads:.*|track_downloads: $TORAN_TRACK_DOWNLOADS|g" $DATA_DIRECTORY/toran/config.yml
 
 # Load config composer
 mkdir -p $DATA_DIRECTORY/toran/composer
@@ -123,6 +133,7 @@ echo "" >> /etc/cron.d/toran-proxy
 mkdir -p $DATA_DIRECTORY/logs/toran
 rm -f $WORK_DIRECTORY/app/logs/prod.log
 ln -s $DATA_DIRECTORY/logs/toran/prod.log $WORK_DIRECTORY/app/logs/prod.log
+ln -s $DATA_DIRECTORY/logs/toran/downloads.private.log $WORK_DIRECTORY/app/logs/downloads.private.log
 
 # Loading permissions
 echo "Loading permissions..."

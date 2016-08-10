@@ -3,6 +3,7 @@
 **latest**
 - Upgrade toran proxy to version 1.5.0
 - Add `monorepo` to `config.yml` of toran proxy
+- Add option `TORAN_TRACK_DOWNLOADS` to track private package installs with logs
 
 **1.4.4**
 - Upgrade toran proxy to version 1.4.4

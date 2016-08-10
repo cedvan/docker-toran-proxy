@@ -124,7 +124,8 @@ Below is the complete list of available options that can be used to customize yo
     - `hour`: All hours
     - `daily`: All days at 04:00 (Use *TORAN_CRON_TIMER_DAILY_TIME* for customize time)
 - **TORAN_CRON_TIMER_DAILY_TIME**: Set a time for cron job daily timer in `HH:MM` format. Defaults to `04:00`
-- **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default null.
+- **TORAN_TOKEN_GITHUB**: Add your Github token for ensure download repositories since Github. Default `null`.
+- **TORAN_TRACK_DOWNLOADS**: Track private package installs, set to `true` to get an install log in `/data/toran-proxy/logs/downloads.private.log`. Defaults to `false`
 - **PHP_TIMEZONE**: Configure timezone PHP. Default `Europe/Paris`.
 
 ## Toran Proxy License
