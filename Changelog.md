@@ -1,8 +1,8 @@
 # Changelog
 
-**latest**
+**1.5.1**
 - Upgrade toran proxy to version 1.5.1
-- Fix update github token 
+- Fix update github token
 
 **1.5.0**
 - Upgrade toran proxy to version 1.5.0
