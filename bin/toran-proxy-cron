@@ -12,6 +12,8 @@ start() {
     DATE="$(date)"
     echo "$DATE - Synchronization finished"
     echo "=========="
+
+    exit 0
 }
 
 case $1 in
