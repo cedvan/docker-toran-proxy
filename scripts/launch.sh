@@ -1,21 +1,14 @@
 #!/bin/bash
 
-DATA_DIRECTORY=/data/toran-proxy
-WORK_DIRECTORY=/var/www
-ASSETS_DIRECTORY=/assets
-SCRIPTS_DIRECTORY=/scripts/toran-proxy
-
-# Create logs directory
-if [ -d $DATA_DIRECTORY/logs ]; then
-    rm -rf $DATA_DIRECTORY/logs
-fi
-mkdir $DATA_DIRECTORY/logs
+# Load config
+source /scripts/toran-proxy/config.sh
 
 # Initilisation
+source $SCRIPTS_DIRECTORY/install/common.sh
+source $SCRIPTS_DIRECTORY/install/toran.sh
+source $SCRIPTS_DIRECTORY/install/ssh.sh
 source $SCRIPTS_DIRECTORY/install/php.sh
 source $SCRIPTS_DIRECTORY/install/nginx.sh
-source $SCRIPTS_DIRECTORY/install/ssh.sh
-source $SCRIPTS_DIRECTORY/install/toran.sh
 
 # Loading logs permissions
 chown -R www-data:www-data \

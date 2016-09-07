@@ -6,6 +6,7 @@
 - Clean create and permissions on logs directory
 - Add option `TORAN_HTTP_PORT` to allow arbitrary http port for nginx / toran proxy
 - Add option `TORAN_HTTPS_PORT` to allow arbitrary https port for nginx / toran proxy
+- Optimize check environment configuration
 
 **1.5.1**
 - Upgrade toran proxy to version 1.5.1
