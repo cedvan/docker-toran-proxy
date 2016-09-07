@@ -22,7 +22,7 @@ Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your
 ```bash
 docker run --name toran-proxy -d \
     -p 80:80 \
-    cedvan/toran-proxy:1.5.1
+    cedvan/toran-proxy:1.5.2
 ```
 Go with your browser to **localhost**
 
@@ -33,7 +33,7 @@ Files are saved to `/data/toran-proxy` in container. Just mount this volume for 
 ```bash
 docker run --name toran-proxy -d \
     -v /opt/toran-proxy:/data/toran-proxy \
-    cedvan/toran-proxy:1.5.1
+    cedvan/toran-proxy:1.5.2
 ```
 
 ## Add ssh config for private repository
@@ -42,7 +42,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
-    cedvan/toran-proxy:1.5.1
+    cedvan/toran-proxy:1.5.2
 ```
 *Files supported : `id_rsa`, `id_rsa.pub`, `config` and `known_hosts`*
 
@@ -52,7 +52,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_CRON_TIMER=half" \
-    cedvan/toran-proxy:1.5.1
+    cedvan/toran-proxy:1.5.2
 ```
 
 ## Enabled HTTPS
@@ -62,7 +62,7 @@ docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
-    cedvan/toran-proxy:1.5.1
+    cedvan/toran-proxy:1.5.2
 ```
 Add your **toran-proxy.key** and **toran-proxy.crt** in folder **certs**. If `toran-proxy.key` and `toran-proxy.crt` do not exist, the container will create self-signed certificates
 
