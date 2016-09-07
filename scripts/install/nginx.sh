@@ -46,12 +46,18 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
         ln -s $DATA_DIRECTORY/certs /usr/local/share/ca-certificates/toran-proxy
         update-ca-certificates
 
+        sed -i "s|TORAN_HTTP_PORT|$TORAN_HTTP_PORT|g" /etc/nginx/sites-available/toran-proxy-https.conf
+        sed -i "s|TORAN_HTTPS_PORT|$TORAN_HTTPS_PORT|g" /etc/nginx/sites-available/toran-proxy-https.conf
         ln -s /etc/nginx/sites-available/toran-proxy-https.conf /etc/nginx/sites-enabled/toran-proxy-https.conf
 
     else
+        
+        sed -i "s|TORAN_HTTP_PORT|$TORAN_HTTP_PORT|g" /etc/nginx/sites-available/toran-proxy-https-reverse.conf
+        sed -i "s|TORAN_HTTPS_PORT|$TORAN_HTTPS_PORT|g" /etc/nginx/sites-available/toran-proxy-https-reverse.conf
         ln -s /etc/nginx/sites-available/toran-proxy-https-reverse.conf /etc/nginx/sites-enabled/toran-proxy-https-reverse.conf
     fi
 else
+    sed -i "s|TORAN_HTTP_PORT|$TORAN_HTTP_PORT|g" /etc/nginx/sites-available/toran-proxy-http.conf
     ln -s /etc/nginx/sites-available/toran-proxy-http.conf /etc/nginx/sites-enabled/toran-proxy-http.conf
 fi
 

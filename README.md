@@ -90,7 +90,9 @@ Add `auth.json` to composer configuration home folder
 Below is the complete list of available options that can be used to customize your toran proxy installation.
 
 - **TORAN_HOST**: The hostname of the toran proxy server. Defaults to `localhost`
+- **TORAN_HTTP_PORT**: The port of the toran http server. Defaults to `80`
 - **TORAN_HTTPS**: Set to `true` to enable https support, Defaults to `false`. **If you do not use a reverse proxy, do not forget to add the certificates files**
+- **TORAN_HTTPS_PORT**: The port of the toran https server. Defaults to `443`
 - **TORAN_REVERSE**: Set to `true` if you use docker behind a reverse proxy for i.e. ssl termination. This will make Toran use the HTTPS scheme without the need to add certificates. If you do so, make sure to set your reverse proxy to target port 443. Defaults to `false`
 - **TORAN_CRON_TIMER**: Setup cron job timer. Defaults to `fifteen`
     - `minutes`: All minutes

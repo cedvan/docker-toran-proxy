@@ -4,7 +4,9 @@ echo "Configure Toran Proxy..."
 
 # Toran Proxy Configuration
 TORAN_HOST=${TORAN_HOST:-localhost}
+TORAN_HTTP_PORT=${TORAN_HTTP_PORT:-80}
 TORAN_HTTPS=${TORAN_HTTPS:-false}
+TORAN_HTTPS_PORT=${TORAN_HTTPS_PORT:-443}
 TORAN_REVERSE=${TORAN_REVERSE:-false}
 TORAN_CRON_TIMER=${TORAN_CRON_TIMER:-fifteen}
 TORAN_CRON_TIMER_DAILY_TIME=${TORAN_CRON_TIMER_DAILY_TIME:-04:00}
@@ -61,6 +63,8 @@ cp -f $WORK_DIRECTORY/app/config/parameters.yml.dist $WORK_DIRECTORY/app/config/
 sed -i "s|toran_scheme:.*|toran_scheme: $TORAN_SCHEME|g" $WORK_DIRECTORY/app/config/parameters.yml
 sed -i "s|toran_host:.*|toran_host: $TORAN_HOST|g" $WORK_DIRECTORY/app/config/parameters.yml
 sed -i "s|secret:.*|secret: $TORAN_SECRET|g" $WORK_DIRECTORY/app/config/parameters.yml
+sed -i "s|toran_http_port:.*|toran_http_port: $TORAN_HTTP_PORT|g" $WORK_DIRECTORY/app/config/parameters.yml
+sed -i "s|toran_https_port:.*|toran_https_port: $TORAN_HTTPS_PORT|g" $WORK_DIRECTORY/app/config/parameters.yml
 
 # Load toran data
 if [ ! -d $DATA_DIRECTORY/toran ]; then
