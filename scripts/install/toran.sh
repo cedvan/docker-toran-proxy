@@ -76,7 +76,7 @@ elif [ "${TORAN_CRON_TIMER}" == "fifteen" ]; then
 elif [ "${TORAN_CRON_TIMER}" == "half" ]; then
     CRON_TIMER="*/30 * * * *"
 elif [ "${TORAN_CRON_TIMER}" == "hour" ]; then
-    CRON_TIMER="*/1 * * * *"
+    CRON_TIMER="0 * * * *"
 elif [ "${TORAN_CRON_TIMER}" == "daily" ]; then
     read CRON_TIMER_HOUR CRON_TIMER_MIN <<< ${TORAN_CRON_TIMER_DAILY_TIME//[:]/ }
     CRON_TIMER="$CRON_TIMER_MIN $CRON_TIMER_HOUR * * * *"
