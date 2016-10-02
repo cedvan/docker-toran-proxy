@@ -1,6 +1,7 @@
 # Changelog
 
 **latest**
+- Upgrade toran proxy to version 1.5.3
 - Fixing wrong declaration of cron "hour" value.
 
 **1.5.2**
