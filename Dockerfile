@@ -20,7 +20,8 @@ RUN apt-get update -qq \
         php5-cli \
         php5-intl \
         php5-curl \
-        nginx
+        nginx \
+        apache2-utils
 
 # Configure PHP and Nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf

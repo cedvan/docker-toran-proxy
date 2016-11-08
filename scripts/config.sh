@@ -23,6 +23,9 @@ TORAN_TOKEN_GITHUB=${TORAN_TOKEN_GITHUB:-false}
 TORAN_TRACK_DOWNLOADS=${TORAN_TRACK_DOWNLOADS:-false}
 TORAN_MONO_REPO=${TORAN_MONO_REPO:-false}
 TORAN_SECRET=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+TORAN_AUTH_ENABLE=${TORAN_AUTH_ENABLE:-false}
+TORAN_AUTH_USER=${TORAN_AUTH_USER:-toran}
+TORAN_AUTH_PASSWORD=${TORAN_AUTH_PASSWORD:-toran}
 
 # Checking PHP Timezone
 if [[ ! "${PHP_TIMEZONE}" =~ ^[A-Z]{1}[a-z]+/[A-Z]{1}[a-z]+$ ]]; then
@@ -88,5 +91,26 @@ fi
 if [[ ! "${TORAN_CRON_TIMER_DAILY_TIME}" =~ ^[0-9]{2}:[0-9]{2}$ ]]; then
     echo "ERROR: "
     echo "  Variable TORAN_CRON_TIMER_DAILY_TIME isn't valid ! (Format accepted : HH:MM)"
+    exit 1
+fi
+
+# Checking Toran Auth Enable
+if [ "${TORAN_AUTH_ENABLE}" != "true" ] && [ "${TORAN_AUTH_ENABLE}" != "false" ]; then
+    echo "ERROR: "
+    echo "  Variable TORAN_AUTH_ENABLE isn't valid ! (Values accepted : true/false)"
+    exit 1
+fi
+
+# Checking Toran Auth User
+if [ "${TORAN_AUTH_USER}" == "" ]; then
+    echo "ERROR: "
+    echo "  Variable TORAN_AUTH_USER isn't valid! Must not be empty."
+    exit 1
+fi
+
+# Checking Toran Auth Password
+if [ "${TORAN_AUTH_PASSWORD}" == "" ]; then
+    echo "ERROR: "
+    echo "  Variable TORAN_AUTH_PASSWORD isn't valid! Must not be empty."
     exit 1
 fi
