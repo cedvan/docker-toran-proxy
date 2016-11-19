@@ -3,6 +3,7 @@
 **latest**
 - Enabling HTTP Basic Authentication configuration with `TORAN_AUTH_ENABLE`, `TORAN_AUTH_USER`, and `TORAN_AUTH_PASSWORD` env vars.
 - Fix load toran logs
+- Fix permissions on packagist directory
 
 **1.5.3**
 - Upgrade toran proxy to version 1.5.3
