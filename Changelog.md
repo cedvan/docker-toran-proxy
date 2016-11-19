@@ -1,6 +1,8 @@
 # Changelog
 
 **latest**
+
+**1.5.3-1**
 - Enabling HTTP Basic Authentication configuration with `TORAN_AUTH_ENABLE`, `TORAN_AUTH_USER`, and `TORAN_AUTH_PASSWORD` env vars.
 - Fix load toran logs
 - Fix permissions on packagist directory
