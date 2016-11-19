@@ -88,6 +88,9 @@ echo "" >> /etc/cron.d/toran-proxy
 # Load toran logs
 mkdir -p $DATA_DIRECTORY/logs/toran
 rm -f $WORK_DIRECTORY/app/logs/prod.log
+rm -f $WORK_DIRECTORY/app/logs/downloads.private.log
+touch $DATA_DIRECTORY/logs/toran/prod.log
+touch $DATA_DIRECTORY/logs/toran/downloads.private.log
 ln -s $DATA_DIRECTORY/logs/toran/prod.log $WORK_DIRECTORY/app/logs/prod.log
 ln -s $DATA_DIRECTORY/logs/toran/downloads.private.log $WORK_DIRECTORY/app/logs/downloads.private.log
 
