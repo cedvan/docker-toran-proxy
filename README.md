@@ -110,6 +110,26 @@ Below is the complete list of available options that can be used to customize yo
 - **TORAN_AUTH_USER**: Configure the HTTP Basic Authentication Username. Defaults to `toran`.
 - **TORAN_AUTH_PASSWORD**: Configure the HTTP Basic Authentication Password. Defaults to `toran`.
 
+## Add customization scripts
+
+For scenarios where the degree of configurability his image offers via the
+above listed options is not sufficient, you are able to add container local
+customization scripts which will get executed during container runtime. Here
+you can add for example sed calls which further tweak the nginx configuration. 
+
+The container `launch.sh` script expects custom scripts to be found under
+`/data/toran-proxy/scripts/*.sh`. These scripts just get sourced in order. 
+
+```bash
+export custdir=/tmp/toran-customs
+mkdir -p $custdir
+echo "echo 'hello world'" > $custdir/hello.sh
+docker run --name toran-proxy -d \
+    -p 443:443 \
+    -v $custdir:/data/toran-proxy/scripts
+    cedvan/toran-proxy:1.5.3-1
+```
+
 ## Toran Proxy License
 
 By default, Toran proxy license is for personal use.

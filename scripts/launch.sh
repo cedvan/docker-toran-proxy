@@ -9,6 +9,7 @@ source $SCRIPTS_DIRECTORY/install/toran.sh
 source $SCRIPTS_DIRECTORY/install/ssh.sh
 source $SCRIPTS_DIRECTORY/install/php.sh
 source $SCRIPTS_DIRECTORY/install/nginx.sh
+source $SCRIPTS_DIRECTORY/install/custom-scripts.sh
 
 # Loading logs permissions
 chown -R www-data:www-data \
