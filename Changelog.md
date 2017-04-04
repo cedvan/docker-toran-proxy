@@ -1,6 +1,7 @@
 # Changelog
 
 **latest**
+- Derive `TORAN_SCHEME` from `TORAN_HTTPS` resp. `TORAN_HTTP` which allows toran to spit out HTTPS links despite being addressed via HTTP (reverse proxy scenario)
 
 **1.5.4**
 - Add custom scripts directory `/data/toran-proxy/scripts` for user customizations to be executed on startup
