@@ -1,5 +1,9 @@
-FROM cedvan/ubuntu:14.04.20160326
+FROM ubuntu:14.04
 MAINTAINER dev@cedvan.com
+
+# Install curl
+RUN apt-get update -qq \
+    && apt-get install -qqy curl
 
 # Install supervisor
 RUN apt-get update -qq \
