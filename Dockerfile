@@ -1,9 +1,13 @@
 FROM ubuntu:14.04
 MAINTAINER dev@cedvan.com
 
-# Install curl
+# Install requirements
 RUN apt-get update -qq \
-    && apt-get install -qqy curl
+    && apt-get install -qqy \
+        curl \
+        wget \
+        ca-certificates \
+        unzip
 
 # Install supervisor
 RUN apt-get update -qq \
