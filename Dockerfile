@@ -17,22 +17,30 @@ RUN apt-get update -qq \
 RUN apt-get update -qq \
     && apt-get install -qqy ssh
 
+# Install PHP 7 repo
+RUN apt-get update -qq \
+    && apt-get install --no-install-recommends -qqy software-properties-common \
+    && LANG=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
+    && apt-get purge -qqy software-properties-common
+
 # Install PHP and Nginx
 RUN apt-get update -qq \
     && apt-get install -qqy \
         git \
         apt-transport-https \
         daemontools \
-        php5-fpm \
-        php5-json \
-        php5-cli \
-        php5-intl \
-        php5-curl \
+        php7.1-fpm \
+        php7.1-json \
+        php7.1-cli \
+        php7.1-intl \
+        php7.1-curl \
+        php7.1-xml \
         nginx \
         apache2-utils
 
 # Configure PHP and Nginx
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+RUN mkdir /run/php \
+    && echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Version Toran Proxy
 ENV TORAN_PROXY_VERSION 1.5.3
@@ -57,7 +65,9 @@ COPY assets/vhosts /etc/nginx/sites-available
 COPY assets/config /assets/config
 
 # Clean
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt-get -qqy --purge autoremove \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 VOLUME /data/toran-proxy
 
