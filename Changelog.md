@@ -1,6 +1,8 @@
 # Changelog
 
 **latest**
+
+**1.5.4**
 - Add custom scripts directory `/data/toran-proxy/scripts` for user customizations to be executed on startup
 - Update FROM to `ubuntu:14.04`
 - Upgrade to PHP 7.1
