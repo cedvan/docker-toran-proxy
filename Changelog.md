@@ -4,6 +4,7 @@
 - Add custom scripts directory `/data/toran-proxy/scripts` for user customizations to be executed on startup
 - Update FROM to `ubuntu:14.04`
 - Upgrade to PHP 7.1
+- Upgrade toran proxy to 1.5.4
 
 **1.5.3-1**
 - Enabling HTTP Basic Authentication configuration with `TORAN_AUTH_ENABLE`, `TORAN_AUTH_USER`, and `TORAN_AUTH_PASSWORD` env vars.
