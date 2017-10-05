@@ -43,7 +43,7 @@ RUN mkdir /run/php \
     && echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # Version Toran Proxy
-ENV TORAN_PROXY_VERSION 1.5.3
+ENV TORAN_PROXY_VERSION 1.5.4
 
 # Download Toran Proxy
 RUN curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}.tgz | tar xzC /tmp \
