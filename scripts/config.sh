@@ -36,9 +36,9 @@ fi
 
 # Checking Toran HTTPS Configuration and load Toran scheme
 if [ "${TORAN_HTTPS}" = "true" ]; then
-    TORAN_SCHEME="https"
+    [ -z "${TORAN_SCHEME}" ] && TORAN_SCHEME="https"
 elif [ "${TORAN_HTTPS}" = "false" ]; then
-    TORAN_SCHEME="http"
+    [ -z "${TORAN_SCHEME}" ] && TORAN_SCHEME="http"
 else
     echo "ERROR: "
     echo "  Variable TORAN_HTTPS isn't valid ! (Values accepted : true/false)"
