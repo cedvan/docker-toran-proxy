@@ -36,9 +36,9 @@ RUN mkdir /run/php \
 ENV TORAN_PROXY_VERSION 1.5.4
 
 # Download Toran Proxy
-RUN mkdir /scratch/
-RUN curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}.tgz | tar xzC /scratch \
-    && mv /scratch/toran/* /var/www
+RUN mkdir -p /var/www
+RUN curl -sL https://toranproxy.com/releases/toran-proxy-v${TORAN_PROXY_VERSION}.tgz | tar xzC /tmp \
+    && mv /tmp/toran/* /var/www
 
 # Load Scripts bash for installing Toran Proxy
 COPY scripts /scripts/toran-proxy/
