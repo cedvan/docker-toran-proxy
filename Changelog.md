@@ -5,7 +5,7 @@
 - Upgrade PHP 7.1 to PHP 7.2
 - Remove unnecessary PPA
 - Upgrade Ubuntu 14.04 to 18.04
-- Optimize layers by doing all apt and purge as a single run.
+- Optimize layers by doing all apt and purge as a single run. (Down from 499MB to 355MB)
 - Fix the tarball extract and copy
 
 **1.5.4**
