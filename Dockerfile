@@ -11,7 +11,7 @@ RUN apt-get update -y \
         git \
         unzip \
         supervisor \
-        ssh
+        ssh \
         git \
         apt-transport-https \
         daemontools \
