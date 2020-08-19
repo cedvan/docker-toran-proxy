@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 MAINTAINER dev@cedvan.com
 # Install requirements
@@ -16,12 +16,12 @@ RUN apt-get update -y \
         git \
         apt-transport-https \
         daemontools \
-        php7.2-fpm \
-        php7.2-json \
-        php7.2-cli \
-        php7.2-intl \
-        php7.2-curl \
-        php7.2-xml \
+        php7.4-fpm \
+        php7.4-json \
+        php7.4-cli \
+        php7.4-intl \
+        php7.4-curl \
+        php7.4-xml \
         nginx \
         apache2-utils \
         && apt-get -y --purge autoremove \
