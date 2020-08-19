@@ -1,5 +1,6 @@
 FROM ubuntu:18.04
 ARG DEBIAN_FRONTEND=noninteractive
+MAINTAINER dev@cedvan.com
 # Install requirements
 RUN apt-get update -y \
     && apt-get install -y \
