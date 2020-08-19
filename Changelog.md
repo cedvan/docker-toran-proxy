@@ -1,6 +1,8 @@
 # Changelog
 
 **latest**
+
+**1.5.4-2**
 - Upgrade Ubuntu 18.04 to 20.04
 - Upgrade PHP 7.2 to 7.4
 
