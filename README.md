@@ -1,6 +1,6 @@
 # Docker Toran Proxy
 
-[![Version](https://images.microbadger.com/badges/version/cedvan/toran-proxy:1.5.4.svg)](https://microbadger.com/images/cedvan/toran-proxy:1.5.4 "Get your own version badge on microbadger.com")
+[![Version](https://images.microbadger.com/badges/version/cedvan/toran-proxy:1.5.4-1.svg)](https://microbadger.com/images/cedvan/toran-proxy:1.5.4-1 "Get your own version badge on microbadger.com")
 [![Docker Pulls](https://img.shields.io/docker/pulls/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
 [![Docker Stars](https://img.shields.io/docker/stars/cedvan/toran-proxy.svg?style=flat-square)](https://hub.docker.com/r/cedvan/toran-proxy/)
 [![Docker image](https://images.microbadger.com/badges/image/cedvan/toran-proxy.svg?style=flat-square)](https://microbadger.com/#/images/cedvan/toran-proxy "Size docker image on Docker Hub")
@@ -27,7 +27,7 @@ Toran acts as a proxy for Packagist and GitHub. It is meant to be set up on your
 ```bash
 docker run --name toran-proxy -d \
     -p 80:80 \
-    cedvan/toran-proxy:1.5.4
+    cedvan/toran-proxy:1.5.4-1
 ```
 Go with your browser to **localhost**
 
@@ -38,7 +38,7 @@ Files are saved to `/data/toran-proxy` in container. Just mount this volume for 
 ```bash
 docker run --name toran-proxy -d \
     -v /opt/toran-proxy:/data/toran-proxy \
-    cedvan/toran-proxy:1.5.4
+    cedvan/toran-proxy:1.5.4-1
 ```
 
 ## Add ssh config for private repository
@@ -47,7 +47,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -v /opt/toran-proxy/ssh:/data/toran-proxy/ssh \
-    cedvan/toran-proxy:1.5.4
+    cedvan/toran-proxy:1.5.4-1
 ```
 *Files supported : `id_rsa`, `id_rsa.pub`, `config` and `known_hosts`*
 
@@ -57,7 +57,7 @@ docker run --name toran-proxy -d \
 docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_CRON_TIMER=half" \
-    cedvan/toran-proxy:1.5.4
+    cedvan/toran-proxy:1.5.4-1
 ```
 
 ## Enabled HTTPS
@@ -67,7 +67,7 @@ docker run --name toran-proxy -d \
     -p 443:443 \
     -e "TORAN_HTTPS=true" \
     -v /opt/toran-proxy/certs:/data/toran-proxy/certs \
-    cedvan/toran-proxy:1.5.4
+    cedvan/toran-proxy:1.5.4-1
 ```
 Add your **toran-proxy.key** and **toran-proxy.crt** in folder **certs**. If `toran-proxy.key` and `toran-proxy.crt` do not exist, the container will create self-signed certificates
 
@@ -120,10 +120,10 @@ Below is the complete list of available options that can be used to customize yo
 For scenarios where the degree of configurability his image offers via the
 above listed options is not sufficient, you are able to add container local
 customization scripts which will get executed during container runtime. Here
-you can add for example sed calls which further tweak the nginx configuration. 
+you can add for example sed calls which further tweak the nginx configuration.
 
 The container `launch.sh` script expects custom scripts to be found under
-`/data/toran-proxy/scripts/*.sh`. These scripts just get sourced in order. 
+`/data/toran-proxy/scripts/*.sh`. These scripts just get sourced in order.
 
 ```bash
 export custdir=/tmp/toran-customs
@@ -132,7 +132,7 @@ echo "echo 'hello world'" > $custdir/hello.sh
 docker run --name toran-proxy -d \
     -p 443:443 \
     -v $custdir:/data/toran-proxy/scripts
-    cedvan/toran-proxy:1.5.4
+    cedvan/toran-proxy:1.5.4-1
 ```
 
 ## Toran Proxy License

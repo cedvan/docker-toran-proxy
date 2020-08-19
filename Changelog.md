@@ -1,6 +1,8 @@
 # Changelog
 
 **latest**
+
+**1.5.4-1**
 - Derive `TORAN_SCHEME` from `TORAN_HTTPS` resp. `TORAN_HTTP` which allows toran to spit out HTTPS links despite being addressed via HTTP (reverse proxy scenario)
 - Upgrade PHP 7.1 to PHP 7.2
 - Remove unnecessary PPA
