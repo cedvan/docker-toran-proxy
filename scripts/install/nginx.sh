@@ -65,6 +65,10 @@ if [ "${TORAN_HTTPS}" == "true" ]; then
 
         fi
 
+        if [ ! -e "${DATA_DIRECTORY}/certs/toran-proxy.pem" ]; then
+            openssl dhparam -out "${DATA_DIRECTORY}/certs/toran-proxy.pem" 2048
+        fi
+
         # Add certificates trusted
         ln -s $DATA_DIRECTORY/certs /usr/local/share/ca-certificates/toran-proxy
         update-ca-certificates

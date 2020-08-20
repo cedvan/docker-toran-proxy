@@ -30,7 +30,8 @@ RUN apt-get update -y \
 
 # Configure PHP and Nginx
 RUN mkdir /run/php \
-    && echo "daemon off;" >> /etc/nginx/nginx.conf
+    && echo "daemon off;" >> /etc/nginx/nginx.conf \
+    && echo "ssl_session_cache shared:SSL:5m; ssl_session_timeout 1h;" >> /etc/nginx/conf.d/ssl_session.conf
 
 # Version Toran Proxy
 ENV TORAN_PROXY_VERSION 1.5.4
