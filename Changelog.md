@@ -1,6 +1,7 @@
 # Changelog
 
 **latest**
+- Enable HTTP/2 in Nginx.
 
 **1.5.4-2**
 - Upgrade Ubuntu 18.04 to 20.04
